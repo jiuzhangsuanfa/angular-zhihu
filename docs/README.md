@@ -79,3 +79,24 @@ a.animation:hover::after {
   transform-origin: right;
 }
 ```
+
+## 2 配置 Router
+
+### 2.1 创建 Routing Module
+
+```shell
+ng g m app-routing --flat
+```
+
+```typescript
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
