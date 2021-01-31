@@ -1,19 +1,16 @@
-@import '~@angular/material/theming';
-@import url('https://cdn.jsdelivr.net/gh/tonsky/FiraCode@4/distr/fira_code.css');
+# 开发日志
 
-$zhihu-primary: mat-palette($mat-blue);
-$zhihu-accent : mat-palette($mat-pink, A200, A100, A400);
+## 1 启用 Angular Material 支持
 
-$zhihu-warn: mat-palette($mat-red);
+```shell
+ng add @angular/material
+```
 
-$zhihu-theme: mat-light-theme((color: (primary: $zhihu-primary,
-      accent: $zhihu-accent,
-      warn: $zhihu-warn,
-    )));
+### 1.1 设置字体
 
-@include angular-material-theme($zhihu-theme);
-
-$custom-typography: mat-typography-config($font-family: '"Fira Code", "Microsoft Yahei", "PingFangSC-Regular", sans-serif',
+```scss
+$custom-typography: mat-typography-config(
+  $font-family: '"Fira Code", "Microsoft Yahei", "PingFangSC-Regular", sans-serif',
   $display-4: mat-typography-level(112px, 112px, 300),
   $display-3: mat-typography-level(56px, 56px, 400),
   $display-2: mat-typography-level(45px, 48px, 400),
@@ -26,24 +23,28 @@ $custom-typography: mat-typography-config($font-family: '"Fira Code", "Microsoft
   $body-2: mat-typography-level(13px, 24px, 500),
   $caption: mat-typography-level(10px, 20px, 400),
   $button: mat-typography-level(13px, 12px, 500),
-  $input: mat-typography-level(inherit, 1.125, 400));
+  $input: mat-typography-level(inherit, 1.125, 400)
+);
+```
 
-@include mat-core($custom-typography);
+### 1.2 设置主题
 
-// reset body margin
-body {
-  margin    : 0;
-  padding   : 0;
-  min-height: 100vh;
-}
+```scss
+@import '~@angular/material/theming';
 
-// set default height
-html,
-body {
-  height: 100%;
-}
+$zhihu-primary: mat-palette($mat-blue);
+$zhihu-accent : mat-palette($mat-pink, A200, A100, A400);
+$zhihu-warn: mat-palette($mat-red);
+$zhihu-theme: mat-light-theme((color: (primary: $zhihu-primary,
+      accent: $zhihu-accent,
+      warn: $zhihu-warn,
+    )));
+@include angular-material-theme($zhihu-theme);
+```
 
-// reset link style & add link underline style
+### 1.3 设置下划线动画（可选）
+
+```scss
 a,
 a:link,
 a:active,
@@ -77,3 +78,4 @@ a.animation:hover::after {
   transform       : scale(1);
   transform-origin: right;
 }
+```
