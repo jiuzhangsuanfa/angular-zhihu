@@ -100,3 +100,22 @@ const routes: Routes = [];
 })
 export class AppRoutingModule { }
 ```
+
+## 3 模块设计
+
+### 3.1 问答模块
+
+```shell
+ng g m question --routing
+```
+
+```typescript
+// src/app/app-routing.module.ts
+const routes: Routes = [
+  {
+    path: 'question',
+    loadChildren: () => import('./question/question.module')
+      .then(({ QuestionModule }) => QuestionModule)
+  },
+];
+```
