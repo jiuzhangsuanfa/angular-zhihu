@@ -105,6 +105,8 @@ export class AppRoutingModule { }
 
 ### 3.1 问答模块
 
+**创建 Module**
+
 ```shell
 ng g m question --routing
 ```
@@ -119,3 +121,149 @@ const routes: Routes = [
   },
 ];
 ```
+
+**创建 API Service**
+
+```shell
+ng g s question/services/question-api
+```
+
+#### 3.1.1 问题列表 Component
+
+##### 创建 Component
+
+```shell
+ng g c question/components/question-list
+```
+
+##### API 接口
+
+```http
+GET api/questions
+```
+
+#### 3.1.2 问题详情 Component
+
+```http
+GET api/questions/:id
+```
+
+##### 赞同提问 Action
+
+```http
+PUT api/votes?action=approve&question=<number>
+```
+
+##### 反对提问 Action
+
+```http
+PUT api/votes?action=oppose&question=<number>
+```
+
+#### 3.1.3 回答列表 Component
+
+```http
+GET api/answers?question=<number>
+```
+
+#### 3.1.4 问题编辑详情页 Component
+
+```http
+POST api/questions
+```
+
+### 3.2 回答模块
+
+```shell
+ng g m answer --routing && ng g c answer
+```
+
+#### 3.2.1 回答详情 Component
+
+```http
+GET api/answers/:id
+```
+
+**赞同回答 Action**
+
+```http
+PUT api/votes?action=approve&answer=<number>
+```
+
+**反对回答 Action**
+
+```http
+PUT api/votes?action=oppose&answer=<number>
+```
+
+#### 3.2.2 添加回答 Component
+
+```http
+POST api/answers?question=<number>
+```
+
+### 3.3 用户模块
+
+```shell
+ng g m user --routing && ng g c user
+```
+
+#### 3.3.1 用户详情
+
+```http
+GET api/users/:id
+```
+
+#### 3.3.2 修改用户信息
+
+```http
+PATCH api/users/:id
+```
+
+#### 3.3.3 登录用户
+
+```http
+POST api/signin
+```
+
+#### 3.3.4 注册用户
+
+```http
+POST api/signup
+```
+
+#### 3.3.5 注销登录
+
+```http
+DELETE api/signout
+```
+
+### 3.4 通用模块
+
+#### 3.4.1 创建共享模块
+
+```shell
+ng g m common/modules/shared --flat
+```
+
+```typescript
+// src/app/common/modules/shared.module.ts
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+@NgModule({
+  declarations: [],
+  exports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule,
+  ],
+})
+export class SharedModule { }
+```
+
+并在各个模块中导入。

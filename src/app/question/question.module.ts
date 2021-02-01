@@ -1,12 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SharedModule } from '../common/modules/shared.module';
 import { QuestionRoutingModule } from './question-routing.module';
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-    QuestionRoutingModule
-  ]
+    SharedModule,
+    QuestionRoutingModule,
+  ],
 })
 export class QuestionModule { }
