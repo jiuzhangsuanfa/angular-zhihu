@@ -13,5 +13,8 @@ import { MockApiService } from '../services/mock-api/mock-api.service';
       { dataEncapsulation: false },
     )
   ],
+  exports: [
+    HttpClientInMemoryWebApiModule
+  ]
 })
 export class MockApiModule { }
