@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionApiService } from '../../services/question-api.service';
 
 @Component({
   selector: 'app-question-list',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private api: QuestionApiService,
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.api.approveQuestion(1)
+      .subscribe(console.log);
+  }
 
 }
