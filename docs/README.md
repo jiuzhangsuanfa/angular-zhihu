@@ -279,3 +279,10 @@ export class SharedModule { }
 ```
 
 并在各个模块中导入。
+
+## 4 启用 Mock API Server
+
+```shell
+npm i -S angular-in-memory-web-api
+ng g m common/modules/mock-api --flat
+```
