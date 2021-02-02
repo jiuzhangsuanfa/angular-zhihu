@@ -148,16 +148,28 @@ GET api/questions
 GET api/questions/:id
 ```
 
-##### 赞同提问 Action
+##### 有意义提问 Action
 
 ```http
 PUT api/votes?action=approve&question=<number>
 ```
 
-##### 反对提问 Action
+取消
+
+```http
+DELETE api/votes?action=approve&question=<number>
+```
+
+##### 无意义提问 Action
 
 ```http
 PUT api/votes?action=oppose&question=<number>
+```
+
+取消
+
+```http
+DELETE api/votes?action=oppose&question=<number>
 ```
 
 #### 3.1.3 回答列表 Component
