@@ -282,7 +282,56 @@ export class SharedModule { }
 
 ## 4 启用 Mock API Server
 
+### 4.1 启用 Memory API
+
 ```shell
 npm i -S angular-in-memory-web-api
 ng g m common/modules/mock-api --flat
+```
+
+```typescript
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { MockApiService } from '../services/mock-api/mock-api.service';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      MockApiService,
+      { dataEncapsulation: false },
+    )
+  ],
+})
+export class MockApiModule { }
+```
+
+```typescript
+import { Injectable } from '@angular/core';
+import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MockApiService extends InMemoryDbService {
+
+  createDb(reqInfo?: RequestInfo) {
+    return { reqInfo };
+  }
+
+}
+```
+
+### 4.2 启用 Mockjs
+
+```shell
+npm i -S mockjs
+npm i -D @types/mockjs
+```
+
+```typescript
+import { mock } from 'mockjs';
 ```
