@@ -1,7 +1,7 @@
 export interface Question {
 
   /** 问题 ID */
-  id: string;
+  id: number;
 
   /** 问题标题 */
   title: string;
@@ -20,3 +20,5 @@ export interface Question {
   tags: string[];
 
 }
+
+export type QuestionID = Question['id'];
