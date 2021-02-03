@@ -1,14 +1,15 @@
-import { Random, mock } from 'mockjs';
-import { AnswerID, QuestionID, UserID } from '../interfaces';
+import { mock, Random } from 'mockjs';
+import { Answer, AnswerID, Question, QuestionID, User, UserID, Vote, VoteID } from '../interfaces';
 
-export const mockVote = (id?: number) => ({
+export const mockVote: (id?: VoteID) => Vote = id => ({
   id: id ?? Random.increment(),
   count: Random.integer(0, 99999),
 });
 
-export const mockQuestion = (id?: QuestionID) => ({
+export const mockQuestion: (id?: QuestionID) => Question = id => ({
   id: id ?? Random.increment(),
   title: Random.ctitle(),
+  user: mockUser(),
   content: Random.cparagraph(),
   count: {
     answer: Random.integer(0, 99999),
@@ -21,9 +22,11 @@ export const mockQuestion = (id?: QuestionID) => ({
   date: new Date(Random.datetime()),
 });
 
-export const mockAnswer = (id?: AnswerID) => ({
-  id: id ?? Random.increment(),
+export const mockAnswer: (id?: AnswerID) => Answer = id => ({
+  id: Random.increment(),
+  question: id!,
   title: Random.ctitle(),
+  user: mockUser(),
   images: mock({
     'array|0-10': [Random.image()],
   })['array'],
@@ -36,7 +39,7 @@ export const mockAnswer = (id?: AnswerID) => ({
   date: new Date(Random.datetime()),
 });
 
-export const mockUser = (id?: UserID) => ({
+export const mockUser: (id?: UserID) => User = id => ({
   id: id ?? Random.increment(),
   name: Random.cname(),
   head: Random.image('128x128'),
