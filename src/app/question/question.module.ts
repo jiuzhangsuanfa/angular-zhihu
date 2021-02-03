@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { LoadingModule } from '../common/components/loading/loading.module';
 import { SwitchModule } from '../common/components/switch/switch.module';
 import { MaterialModule } from '../common/modules/material.module';
 import { SharedModule } from '../common/modules/shared.module';
@@ -22,6 +23,7 @@ import { QuestionRoutingModule } from './question-routing.module';
     QuestionRoutingModule,
     MaterialModule,
     SwitchModule,
+    LoadingModule,
   ],
 })
 export class QuestionModule { }

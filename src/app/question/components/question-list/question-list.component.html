@@ -5,7 +5,7 @@
       [routerLink]="[ '/question', question.id ]"></app-question-card>
   </ng-container>
   <ng-template #noQuestionTemplate>
-    <div>No question here</div>
+    <app-loading [height]="'100vh'">正在加载问题列表...</app-loading>
   </ng-template>
 
 </div>

@@ -14,7 +14,7 @@
       </div>
     </ng-container>
     <ng-template #questionLoadingTemplate>
-      <div>Loading question...</div>
+      <app-loading [height]="'30vh'">正在加载问题详情...</app-loading>
     </ng-template>
   </div>
 
@@ -29,7 +29,7 @@
       </app-question-answer-card>
     </ng-container>
     <ng-template #answerLoadingTemplate>
-      Loading answers...
+      <app-loading [height]="'70vh'">正在加载回答列表...</app-loading>
     </ng-template>
   </div>
 
