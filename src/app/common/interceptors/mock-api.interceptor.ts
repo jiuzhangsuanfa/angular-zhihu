@@ -10,6 +10,7 @@ import { mock } from 'mockjs';
 import { asapScheduler, Observable, scheduled } from 'rxjs';
 import { AnswerID, QuestionID, UserID } from '../interfaces';
 import { mockAnswer, mockQuestion, mockUser, mockVote } from '../utils';
+import { delay } from 'rxjs/operators';
 
 @Injectable()
 export class MockApiInterceptor implements HttpInterceptor {
@@ -42,7 +43,8 @@ export class MockApiInterceptor implements HttpInterceptor {
         resource = this.regResource.exec(request.url)![1];
       }
       const body = this.data[resource](id);
-      return scheduled([new HttpResponse({ body })], asapScheduler);
+      return scheduled([new HttpResponse({ body })], asapScheduler)
+        .pipe(delay(100 + Math.random() * 3000));
     }
     return next.handle(request);
   }
