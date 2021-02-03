@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export interface Question {
 
   /** 问题 ID */
@@ -5,6 +7,9 @@ export interface Question {
 
   /** 问题标题 */
   title: string;
+
+  /** 提问用户 */
+  user: User;
 
   /** 问题内容 */
   content?: string;
