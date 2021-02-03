@@ -12,9 +12,9 @@ export const mockQuestion: (id?: QuestionID) => Question = id => ({
   user: mockUser(),
   content: Random.cparagraph(),
   count: {
-    answer: Random.integer(0, 99999),
-    visit: Random.integer(0, 99999),
-    like: Random.integer(0, 99999),
+    answer: Random.integer(0, 13500),
+    visit: Random.integer(0, 999999),
+    like: Random.integer(0, 50000),
   },
   tags: mock({
     'array|0-10': [() => Random.cword(2, 5)],
