@@ -8,16 +8,16 @@ export const mockVote: (id?: VoteID) => Vote = id => ({
 
 export const mockQuestion: (id?: QuestionID) => Question = id => ({
   id: id ?? Random.increment(),
-  title: Random.ctitle(),
+  title: Random.ctitle(8, 15) + '？',
   user: mockUser(),
   content: Random.cparagraph(),
   count: {
-    answer: Random.integer(0, 13500),
+    answer: Random.integer(0, 15000),
     visit: Random.integer(0, 999999),
     like: Random.integer(0, 50000),
   },
   tags: mock({
-    'array|0-10': [() => Random.cword(2, 5)],
+    'array|1-4': [() => Random.cword(2, 5)],
   })['array'],
   date: new Date(Random.datetime()),
 });
@@ -25,15 +25,15 @@ export const mockQuestion: (id?: QuestionID) => Question = id => ({
 export const mockAnswer: (id?: AnswerID) => Answer = id => ({
   id: Random.increment(),
   question: id!,
-  title: Random.ctitle(),
+  title: Random.ctitle(8, 15) + '？',
   user: mockUser(),
   images: mock({
     'array|0-10': [Random.image()],
   })['array'],
   content: Random.cparagraph(),
   count: {
-    approve: Random.integer(0, 99999),
-    oppose: Random.integer(0, 99999),
+    approve: Random.integer(0, 999999),
+    oppose: Random.integer(0, 9999),
     comment: Random.integer(0, 99999),
   },
   date: new Date(Random.datetime()),
