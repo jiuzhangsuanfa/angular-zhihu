@@ -12,13 +12,6 @@ export class QuestionListComponent implements OnInit {
     private api: QuestionApiService,
   ) { }
 
-  ngOnInit() {
-    this.api.getAnswersOfQuestion(1)
-      .subscribe(console.log);
-    this.api.getQuestions()
-      .subscribe(console.log);
-    this.api.getQuestion(1)
-      .subscribe(console.log);
-  }
+  ngOnInit() { }
 
 }
