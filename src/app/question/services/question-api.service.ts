@@ -16,7 +16,6 @@ export class QuestionApiService {
 
   getQuestions(start: QuestionID = 0): Observable<Question[]> {
     const url = urlJoin(HOST, 'questions')
-    console.log(url);
     return this.http.get<Question[]>(url);
   }
 

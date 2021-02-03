@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Question } from 'src/app/common/interfaces';
 import { QuestionApiService } from '../../services/question-api.service';
 
 @Component({
@@ -8,10 +9,15 @@ import { QuestionApiService } from '../../services/question-api.service';
 })
 export class QuestionListComponent implements OnInit {
 
+  questions: Question[] = [];
+
   constructor(
     private api: QuestionApiService,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.api.getQuestions()
+      .subscribe(questions => this.questions = questions);
+  }
 
 }
