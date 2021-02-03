@@ -3,15 +3,15 @@ import { QuestionApiService } from './question-api.service';
 
 describe('QuestionApiService', () => {
 
-  // let service: QuestionApiService;
+  let service: QuestionApiService;
 
-  // beforeEach(() => {
-  //   TestBed.configureTestingModule({});
-  //   service = TestBed.inject(QuestionApiService);
-  // });
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(QuestionApiService);
+  });
 
-  // it('should be created', () => {
-  //   expect(service).toBeTruthy();
-  // });
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 
 });

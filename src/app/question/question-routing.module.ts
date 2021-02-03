@@ -1,9 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { QuestionDetailComponent } from './components/question-detail/question-detail.component';
 import { QuestionListComponent } from './components/question-list/question-list.component';
 
 const routes: Routes = [
-  { path: '', component: QuestionListComponent, data: { reuse: false } },
+  {
+    path: '',
+    component: QuestionListComponent,
+    data: { reuse: false },
+  },
+  {
+    path: ':id',
+    component: QuestionDetailComponent,
+    data: { reuse: true },
+  },
 ];
 
 @NgModule({

@@ -1,7 +1,8 @@
 <div class="container">
 
   <ng-container *ngIf="questions.length > 0; else noQuestionTemplate">
-    <app-question-card *ngFor="let question of questions" [question]="question"></app-question-card>
+    <app-question-card *ngFor="let question of questions" [question]="question"
+      [routerLink]="[ '/question', question.id ]"></app-question-card>
   </ng-container>
   <ng-template #noQuestionTemplate>
     <div>No question here</div>

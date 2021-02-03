@@ -8,7 +8,7 @@ import { Question } from 'src/app/common/interfaces';
 })
 export class QuestionCardComponent implements OnInit {
 
-  @Input('question') question!: Question;
+  @Input('question') question?: Question;
 
   constructor() { }
 

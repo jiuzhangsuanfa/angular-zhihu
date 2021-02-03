@@ -177,6 +177,7 @@ DELETE api/votes?action=oppose&question=<number>
 ```shell
 ng g c question/components/question-card
 ng g c question/components/question-list
+ng g c question/components/question-answer-card
 ```
 
 ```http
@@ -196,6 +197,10 @@ ng g m answer --routing && ng g c answer
 ```
 
 #### 3.2.1 回答详情 Component
+
+```shell
+ng g c question/components/question-detail
+```
 
 ```http
 GET api/answers/:id
