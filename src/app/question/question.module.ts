@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MaterialModule } from '../common/modules/material.module';
 import { SharedModule } from '../common/modules/shared.module';
 import { QuestionCardComponent } from './components/question-card/question-card.component';
 import { QuestionListComponent } from './components/question-list/question-list.component';
@@ -12,6 +13,7 @@ import { QuestionRoutingModule } from './question-routing.module';
   imports: [
     SharedModule,
     QuestionRoutingModule,
+    MaterialModule,
   ],
 })
 export class QuestionModule { }
