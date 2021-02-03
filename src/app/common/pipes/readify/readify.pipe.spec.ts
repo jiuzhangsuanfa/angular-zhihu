@@ -13,11 +13,11 @@ describe('ReadifyPipe', () => {
   });
 
   it('should transform raw number while value < 10000', () => {
-    expect(pipe.transform(0)).toEqual('0');
-    expect(pipe.transform(987)).toEqual('987');
-    expect(pipe.transform(9999)).toEqual('9999');
-    expect(pipe.transform(-1)).toEqual('0');
-    expect(pipe.transform(123.3)).toEqual('123');
+    expect(pipe.transform(0)).toEqual('0 ');
+    expect(pipe.transform(987)).toEqual('987 ');
+    expect(pipe.transform(9999)).toEqual('9999 ');
+    expect(pipe.transform(-1)).toEqual('0 ');
+    expect(pipe.transform(123.3)).toEqual('123 ');
   });
 
   it('should transform raw number while 10000 <= value < 10000 * 10000', () => {
