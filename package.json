@@ -24,7 +24,7 @@
     "mockjs": "^1.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "url-join": "^4.0.1",
+    "url-join-ts": "^1.0.5",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
@@ -34,7 +34,6 @@
     "@types/jasmine": "~3.6.0",
     "@types/mockjs": "^1.0.3",
     "@types/node": "^12.11.1",
-    "@types/url-join": "^4.0.0",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
