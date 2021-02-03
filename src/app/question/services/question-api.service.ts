@@ -49,7 +49,7 @@ export class QuestionApiService {
     return this.http.delete<Question>(url, { params });
   }
 
-  getAnswersOfQuestion(question: QuestionID, next: QuestionID): Observable<Answer[]> {
+  getAnswersOfQuestion(question: QuestionID, next: QuestionID = 0): Observable<Answer[]> {
     const url = urljoin(HOST, 'answers');
     const params = { question: `${question}`, next: `${next}` };
     return this.http.get<Answer[]>(url, { params });

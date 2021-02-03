@@ -19,6 +19,9 @@ export interface Question {
   /** 问题标签 */
   tags: string[];
 
+  /** 创建时间 */
+  date: Date;
+
 }
 
 export type QuestionID = Question['id'];

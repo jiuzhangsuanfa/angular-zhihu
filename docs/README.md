@@ -282,47 +282,53 @@ export class SharedModule { }
 
 ## 4 启用 Mock API Server
 
-### 4.1 启用 Memory API
+### 4.1 创建拦截器
 
 ```shell
-npm i -S angular-in-memory-web-api
 ng g m common/modules/mock-api --flat
+ng g interceptor common/interceptors/mock-api
 ```
 
 ```typescript
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { MockApiService } from '../services/mock-api/mock-api.service';
+// src/app/common/interceptors/mock-api.interceptor.ts
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
+import { Injectable, isDevMode } from '@angular/core';
+import { asapScheduler, Observable, scheduled } from 'rxjs';
 
-@NgModule({
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      MockApiService,
-      { dataEncapsulation: false },
-    )
-  ],
-})
-export class MockApiModule { }
-```
+@Injectable()
+export class MockApiInterceptor implements HttpInterceptor {
 
-```typescript
-import { Injectable } from '@angular/core';
-import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
+  constructor() { }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class MockApiService extends InMemoryDbService {
-
-  createDb(reqInfo?: RequestInfo) {
-    return { reqInfo };
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (isDevMode()) {
+      console.log(request);
+      return scheduled([new HttpResponse({ body: {} })], asapScheduler);
+    }
+    return next.handle(request);
   }
 
 }
+```
+
+```typescript
+// src/app/common/modules/mock-api.module.ts
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { MockApiInterceptor } from '../interceptors/mock-api.interceptor';
+
+@NgModule({
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MockApiInterceptor, multi: true },
+  ]
+})
+export class MockApiModule { }
 ```
 
 ### 4.2 启用 Mockjs

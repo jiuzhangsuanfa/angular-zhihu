@@ -3,6 +3,7 @@ import { User } from './user';
 export interface Answer {
 
   id: number;
+  question: number;
   title: string;
   images?: string[];
   user: User;

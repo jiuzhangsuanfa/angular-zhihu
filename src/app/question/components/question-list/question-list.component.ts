@@ -13,7 +13,11 @@ export class QuestionListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.api.approveQuestion(1)
+    this.api.getAnswersOfQuestion(1)
+      .subscribe(console.log);
+    this.api.getQuestions()
+      .subscribe(console.log);
+    this.api.getQuestion(1)
       .subscribe(console.log);
   }
 
