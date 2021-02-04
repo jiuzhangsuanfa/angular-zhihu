@@ -7,7 +7,12 @@
       <span class="name">{{ question.user.name }}</span>
       <span class="motto">{{ question.user.motto }}</span>
     </div>
-    <p class="content">{{ question.content }}</p>
+    <div class="content">
+      <p class="text">{{ question.content }}</p>
+      <ng-container *ngIf="question.cover">
+        <div class="cover" [style.background-image]="'url(' + question.cover! + ')'"></div>
+      </ng-container>
+    </div>
     <div class="count">
       <span>{{ question.count.visit | readify }}浏览</span>
       <span>{{ question.count.answer | readify }}回答</span>

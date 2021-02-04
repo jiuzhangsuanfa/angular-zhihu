@@ -197,13 +197,13 @@ POST api/questions
 ### 3.2 回答模块
 
 ```shell
-ng g m answer --routing && ng g c answer
+ng g m answer --routing
 ```
 
 #### 3.2.1 回答详情 Component
 
 ```shell
-ng g c question/components/question-detail
+ng g c answer/components/detail/answer-detail --flat
 ```
 
 ```http

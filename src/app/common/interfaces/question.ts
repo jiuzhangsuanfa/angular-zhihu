@@ -9,7 +9,7 @@ export interface Question {
   title: string;
 
   /** 封面 */
-  covers?: string[];
+  cover?: string;
 
   /** 提问用户 */
   user: User;

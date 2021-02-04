@@ -32,12 +32,37 @@
   }
 
   >.content {
-    margin            : 0.5rem 0;
-    overflow          : hidden;
-    text-overflow     : ellipsis;
-    display           : -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    display        : flex;
+    flex-direction : row;
+    justify-content: space-between;
+    margin         : 0.5rem 0;
+
+    >:not(:first-child) {
+      margin-left: 0.1rem;
+    }
+
+    >:not(:last-child) {
+      margin-right: 0.1rem;
+    }
+
+    >.text {
+      overflow          : hidden;
+      text-overflow     : ellipsis;
+      display           : -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      width             : 100%;
+      margin-top        : 0;
+      margin-bottom     : 0;
+      padding           : 0;
+    }
+
+    >.cover {
+      background-size    : cover;
+      background-repeat  : no-repeat;
+      background-position: top left;
+      width              : 10rem;
+    }
   }
 
   >.count {

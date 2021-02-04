@@ -10,6 +10,7 @@ export const mockQuestion: (id?: QuestionID) => Question = id => ({
   id: id ?? Random.increment(),
   title: Random.ctitle(8, 15) + '？',
   user: mockUser(),
+  cover: Math.random() > 0.5 ? Random.image() : undefined,
   content: Random.cparagraph(),
   count: {
     answer: Random.integer(0, 15000),
