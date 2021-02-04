@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Answer, Question, QuestionID } from 'src/app/common/interfaces';
 import { QuestionApiService } from '../../services/question-api.service';
 

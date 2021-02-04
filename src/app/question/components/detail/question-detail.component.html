@@ -25,8 +25,8 @@
 
   <div class="answer">
     <ng-container *ngIf="answers && answers.length; else answerLoadingTemplate">
-      <app-question-answer-card *ngFor="let answer of answers; trackBy: trackByAnswerId" [answer]="answer">
-      </app-question-answer-card>
+      <app-question-detail-answer-card *ngFor="let answer of answers; trackBy: trackByAnswerId" [answer]="answer">
+      </app-question-detail-answer-card>
     </ng-container>
     <ng-template #answerLoadingTemplate>
       <app-loading [height]="'70vh'">正在加载回答列表...</app-loading>

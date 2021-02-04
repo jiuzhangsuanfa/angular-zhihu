@@ -133,7 +133,8 @@ ng g s question/services/question-api
 ##### 创建 Component
 
 ```shell
-ng g c question/components/question-list
+ng g c question/components/list/question-list --flat
+ng g c question/components/list/card/question-card --flat
 ```
 
 ##### API 接口
@@ -143,6 +144,11 @@ GET api/questions
 ```
 
 #### 3.1.2 问题详情 Component
+
+```shell
+ng g c question/components/detail/question-detail --flat
+ng g c question/components/detail/switch/question-detail-switch --flat
+```
 
 ```http
 GET api/questions/:id
@@ -175,9 +181,7 @@ DELETE api/votes?action=oppose&question=<number>
 #### 3.1.3 回答列表 Component
 
 ```shell
-ng g c question/components/card/question-card --flat
-ng g c question/components/list/question-list --flat
-ng g c question/components/detail/question-answer-card --flat
+ng g c question/components/detail/answer-card/question-detail-answer-card --flat
 ```
 
 ```http
@@ -227,7 +231,7 @@ POST api/answers?question=<number>
 ### 3.3 用户模块
 
 ```shell
-ng g m user --routing && ng g c user
+ng g m user --routing
 ```
 
 #### 3.3.1 用户详情
