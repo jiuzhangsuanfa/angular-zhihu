@@ -9,12 +9,17 @@ import {
 import { Injectable, isDevMode } from '@angular/core';
 import { mock } from 'mockjs';
 import { asapScheduler, Observable, scheduled } from 'rxjs';
-import { AnswerID, QuestionID, UserID } from '../interfaces';
+import { Answer, AnswerID, Question, QuestionID, UserID } from '../interfaces';
 import { mockAnswer, mockQuestion, mockUser, mockVote } from '../utils';
-import { delay } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
+import { CacheService } from '../services/cache/cache.service';
 
 @Injectable()
 export class MockApiInterceptor implements HttpInterceptor {
+
+  constructor(
+    private cache: CacheService,
+  ) { }
 
   private regResource = /http:\/\/localhost:8080\/(.*)/;
   private regResourceWithID = /http:\/\/localhost:8080\/(.+)\/(.*)/;
@@ -32,18 +37,44 @@ export class MockApiInterceptor implements HttpInterceptor {
   };
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (isDevMode()) {
-      let resource = '';
-      let id;
-      if (this.regResourceWithID.test(request.url)) {
-        resource = this.regResourceWithID.exec(request.url)![1];
-        id = this.regResourceWithID.exec(request.url)![2];
-      } else {
-        resource = this.regResource.exec(request.url)![1];
+    let resource = '';
+    let id: string | undefined;
+    let body;
+    if (this.regResourceWithID.test(request.url)) {
+      resource = this.regResourceWithID.exec(request.url)![1];
+      id = this.regResourceWithID.exec(request.url)![2];
+      switch (resource) {
+        case 'questions':
+          body = this.cache.getQuestion(+id);
+          break;
+        case 'answers':
+          body = this.cache.getAnswer(+id);
+          break;
       }
-      const body = this.data[resource](id, request);
+    } else {
+      resource = this.regResource.exec(request.url)![1];
+    }
+
+    if (isDevMode()) {
+      body = body || this.data[resource](id, request);
       return scheduled([new HttpResponse({ body })], asapScheduler)
-        .pipe(delay(100 + Math.random() * 3000));
+        .pipe(
+          delay(100 + Math.random() * 3000),
+          tap(response => {
+            switch (resource) {
+              case 'questions':
+                id
+                  ? this.cache.setQuestion(response.body)
+                  : response.body.forEach((question: Question) => this.cache.setQuestion(question));
+                break;
+              case 'answers':
+                id
+                  ? this.cache.setAnswer(response.body)
+                  : response.body.forEach((answer: Answer) => this.cache.setAnswer(answer));
+                break;
+            }
+          }),
+        );
     }
     return next.handle(request);
   }

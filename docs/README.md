@@ -465,7 +465,6 @@ export class MockApiInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (isDevMode()) {
-      console.log(request);
       return scheduled([new HttpResponse({ body: {} })], asapScheduler);
     }
     return next.handle(request);

@@ -38,9 +38,9 @@ const answerStatusList = [
   AnswerStatus.NONE,
 ];
 
-export const mockAnswer: (id?: AnswerID) => Answer = id => ({
+export const mockAnswer: (id?: AnswerID, request?: HttpRequest<any>) => Answer = (id, request) => ({
   id: Random.increment(),
-  question: id!,
+  question: +(request?.params.get('question') || Random.integer()),
   user: mockUser(),
   covers: mock({
     'array|0-10': [Random.image()],

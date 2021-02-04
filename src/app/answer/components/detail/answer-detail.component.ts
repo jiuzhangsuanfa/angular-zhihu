@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Answer, AnswerID, AnswerStatus } from 'src/app/common/interfaces';
+import { mergeMap, tap } from 'rxjs/operators';
+import { Answer, AnswerID, AnswerStatus, Question } from 'src/app/common/interfaces';
+import { CacheService } from 'src/app/common/services/cache/cache.service';
+import { QuestionApiService } from 'src/app/question/services/api/question-api.service';
 import { AnswerApiService } from '../../services/api/answer-api.service';
 
 @Component({
@@ -11,18 +14,27 @@ import { AnswerApiService } from '../../services/api/answer-api.service';
 export class AnswerDetailComponent implements OnInit {
 
   id: AnswerID;
-  answer?: Answer;
+  answer: Answer;
+  question: Question;
 
   constructor(
     private api: AnswerApiService,
     private route: ActivatedRoute,
+    private cache: CacheService,
+    private questionApi: QuestionApiService,
   ) {
     this.id = +route.snapshot.paramMap.get('id')!;
+    this.answer = this.cache.getAnswer(this.id)!;
+    this.question = this.cache.getQuestion(this.answer?.id || 0)!
   }
 
   ngOnInit() {
     this.api.getAnswer(this.id)
-      .subscribe(answer => this.answer = answer);
+      .pipe(
+        tap(answer => this.answer = answer),
+        mergeMap(answer => this.questionApi.getQuestion(answer.id)),
+      )
+      .subscribe(question => this.question = question);
   }
 
   approve() {
