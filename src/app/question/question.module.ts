@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { LoadingModule } from '../common/components/loading/loading.module';
 import { MaterialModule } from '../common/modules/material.module';
+import { PipeModule } from '../common/modules/pipe.module';
 import { SharedModule } from '../common/modules/shared.module';
-import { ReadifyPipe } from '../common/pipes/readify/readify.pipe';
 import { QuestionDetailAnswerCardComponent } from './components/detail/answer-card/question-detail-answer-card.component';
 import { QuestionDetailComponent } from './components/detail/question-detail.component';
 import { QuestionDetailSwitchComponent } from './components/detail/switch/question-detail-switch.component';
@@ -14,7 +14,6 @@ import { QuestionRoutingModule } from './question-routing.module';
   declarations: [
     QuestionListComponent,
     QuestionCardComponent,
-    ReadifyPipe,
     QuestionDetailComponent,
     QuestionDetailSwitchComponent,
     QuestionDetailAnswerCardComponent,
@@ -24,6 +23,7 @@ import { QuestionRoutingModule } from './question-routing.module';
     QuestionRoutingModule,
     MaterialModule,
     LoadingModule,
+    PipeModule,
   ],
 })
 export class QuestionModule { }
