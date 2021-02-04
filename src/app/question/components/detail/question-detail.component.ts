@@ -33,6 +33,7 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   getFetchType(value: 'popular' | 'latest') {
+    this.answers = undefined;
     this.fetchType = value;
     this.api.getAnswersOfQuestion(this.id)
       .subscribe(answers => this.answers = answers);
