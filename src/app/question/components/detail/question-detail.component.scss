@@ -59,9 +59,17 @@
     }
   }
 
-  >.answer {
-    background-color: white;
-    padding         : 1rem;
+  >.answers {
+    display       : flex;
+    flex-direction: column;
+
+    >:not(:first-child) {
+      margin-top: 0.25rem;
+    }
+
+    >:not(:last-child) {
+      margin-bottom: 0.25rem;
+    }
   }
 
 }

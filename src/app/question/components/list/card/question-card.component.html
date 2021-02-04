@@ -1,24 +1,18 @@
 <div class="container">
 
-  <ng-container *ngIf="question; else elseTemplate">
-    <div class="card">
-      <h3 class="title">{{ question.title }}</h3>
-      <div class="user">
-        <img src="{{ question.user.head }}" alt="头像" class="head">
-        <span class="name">{{ question.user.name }}</span>
-        <span class="motto">{{ question.user.motto }}</span>
-      </div>
-      <p class="content">{{ question.content }}</p>
-      <div class="count">
-        <span>{{ question.count.visit | readify }}浏览</span>
-        <span>{{ question.count.answer | readify }}回答</span>
-        <span>{{ question.count.like | readify }}喜欢</span>
-      </div>
+  <div class="card">
+    <h3 class="title">{{ question.title }}</h3>
+    <div class="user">
+      <img src="{{ question.user.head }}" alt="头像" class="head">
+      <span class="name">{{ question.user.name }}</span>
+      <span class="motto">{{ question.user.motto }}</span>
     </div>
-  </ng-container>
-
-  <ng-template #elseTemplate>
-    <div>No question detail</div>
-  </ng-template>
+    <p class="content">{{ question.content }}</p>
+    <div class="count">
+      <span>{{ question.count.visit | readify }}浏览</span>
+      <span>{{ question.count.answer | readify }}回答</span>
+      <span>{{ question.count.like | readify }}喜欢</span>
+    </div>
+  </div>
 
 </div>

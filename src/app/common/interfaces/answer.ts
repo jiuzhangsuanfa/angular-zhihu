@@ -4,8 +4,7 @@ export interface Answer {
 
   id: number;
   question: number;
-  title: string;
-  images?: string[];
+  covers?: string[];
   user: User;
   content: string;
   count: {

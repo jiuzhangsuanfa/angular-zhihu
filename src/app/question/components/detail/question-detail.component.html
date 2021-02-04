@@ -23,7 +23,7 @@
     <app-question-detail-switch (value)="getFetchType($event)"></app-question-detail-switch>
   </div>
 
-  <div class="answer">
+  <div class="answers">
     <ng-container *ngIf="answers && answers.length; else answerLoadingTemplate">
       <app-question-detail-answer-card *ngFor="let answer of answers; trackBy: trackByAnswerId" [answer]="answer">
       </app-question-detail-answer-card>

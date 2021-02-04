@@ -25,9 +25,8 @@ export const mockQuestion: (id?: QuestionID) => Question = id => ({
 export const mockAnswer: (id?: AnswerID) => Answer = id => ({
   id: Random.increment(),
   question: id!,
-  title: Random.ctitle(8, 15) + '？',
   user: mockUser(),
-  images: mock({
+  covers: mock({
     'array|0-10': [Random.image()],
   })['array'],
   content: Random.cparagraph(),

@@ -8,6 +8,9 @@ export interface Question {
   /** 问题标题 */
   title: string;
 
+  /** 封面 */
+  covers?: string[];
+
   /** 提问用户 */
   user: User;
 
