@@ -11,7 +11,7 @@ export const mockQuestion: (id?: QuestionID) => Question = id => ({
   title: Random.ctitle(8, 15) + '？',
   user: mockUser(),
   cover: Math.random() > 0.5 ? Random.image() : undefined,
-  content: Random.cparagraph(),
+  content: Random.cparagraph(0, 30),
   count: {
     answer: Random.integer(0, 15000),
     visit: Random.integer(0, 999999),
@@ -30,7 +30,7 @@ export const mockAnswer: (id?: AnswerID) => Answer = id => ({
   covers: mock({
     'array|0-10': [Random.image()],
   })['array'],
-  content: Random.cparagraph(),
+  content: Random.cparagraph(0, 1000),
   count: {
     approve: Random.integer(0, 999999),
     oppose: Random.integer(0, 9999),
