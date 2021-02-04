@@ -20,7 +20,7 @@
 
   <div class="filter">
     <span class="title">回答 {{ question && question.count.answer || 0 }}</span>
-    <app-switch (value)="getFetchType($event)"></app-switch>
+    <app-question-detail-switch (value)="getFetchType($event)"></app-question-detail-switch>
   </div>
 
   <div class="answer">

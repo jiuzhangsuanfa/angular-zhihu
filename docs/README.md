@@ -175,9 +175,9 @@ DELETE api/votes?action=oppose&question=<number>
 #### 3.1.3 回答列表 Component
 
 ```shell
-ng g c question/components/question-card
-ng g c question/components/question-list
-ng g c question/components/question-answer-card
+ng g c question/components/card/question-card --flat
+ng g c question/components/list/question-list --flat
+ng g c question/components/detail/question-answer-card --flat
 ```
 
 ```http
