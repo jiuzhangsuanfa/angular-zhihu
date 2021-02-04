@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Answer, Question, QuestionID } from 'src/app/common/interfaces';
-import { QuestionApiService } from '../../services/question-api.service';
+import { QuestionApiService } from '../../services/api/question-api.service';
 
 @Component({
   selector: 'app-question-detail',
