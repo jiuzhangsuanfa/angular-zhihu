@@ -10,12 +10,17 @@ const routes: Routes = [
   {
     path: 'question',
     loadChildren: () => import('./question/question.module')
-      .then(module => module.QuestionModule)
+      .then(({ QuestionModule }) => QuestionModule)
+  },
+  {
+    path: 'answer',
+    loadChildren: () => import('./answer/answer.module')
+      .then(({ AnswerModule }) => AnswerModule)
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

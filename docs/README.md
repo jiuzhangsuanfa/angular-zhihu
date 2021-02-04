@@ -198,6 +198,7 @@ POST api/questions
 
 ```shell
 ng g m answer --routing
+ng g s answer/services/api/answer-api
 ```
 
 #### 3.2.1 回答详情 Component
