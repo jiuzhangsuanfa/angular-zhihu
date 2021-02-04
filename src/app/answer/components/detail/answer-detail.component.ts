@@ -14,8 +14,8 @@ import { AnswerApiService } from '../../services/api/answer-api.service';
 export class AnswerDetailComponent implements OnInit {
 
   id: AnswerID;
-  answer: Answer;
-  question: Question;
+  answer?: Answer;
+  question?: Question;
 
   constructor(
     private api: AnswerApiService,
@@ -24,8 +24,6 @@ export class AnswerDetailComponent implements OnInit {
     private questionApi: QuestionApiService,
   ) {
     this.id = +route.snapshot.paramMap.get('id')!;
-    this.answer = this.cache.getAnswer(this.id)!;
-    this.question = this.cache.getQuestion(this.answer?.id || 0)!
   }
 
   ngOnInit() {

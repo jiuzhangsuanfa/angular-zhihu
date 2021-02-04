@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MockApiInterceptor } from './mock-api.interceptor';
+import { CacheInterceptor } from './cache.interceptor';
 
-describe('MockApiInterceptor', () => {
+describe('CacheInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      MockApiInterceptor
+      CacheInterceptor
       ]
   }));
 
   it('should be created', () => {
-    const interceptor: MockApiInterceptor = TestBed.inject(MockApiInterceptor);
+    const interceptor: CacheInterceptor = TestBed.inject(CacheInterceptor);
     expect(interceptor).toBeTruthy();
   });
 });
