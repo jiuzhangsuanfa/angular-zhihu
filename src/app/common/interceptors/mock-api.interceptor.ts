@@ -2,6 +2,7 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
+  HttpParams,
   HttpRequest,
   HttpResponse
 } from '@angular/common/http';
@@ -18,9 +19,7 @@ export class MockApiInterceptor implements HttpInterceptor {
   private regResource = /http:\/\/localhost:8080\/(.*)/;
   private regResourceWithID = /http:\/\/localhost:8080\/(.+)\/(.*)/;
   private data: any = {
-    votes: (id: number) => id
-      ? mockVote(id)
-      : mock({ 'array|10': [() => mockVote()] })['array'],
+    votes: (_: any, request: HttpRequest<any>) => mockVote(request),
     questions: (id?: QuestionID) => id
       ? mockQuestion(id)
       : mock({ 'array|10': [() => mockQuestion()] })['array'],
@@ -42,7 +41,7 @@ export class MockApiInterceptor implements HttpInterceptor {
       } else {
         resource = this.regResource.exec(request.url)![1];
       }
-      const body = this.data[resource](id);
+      const body = this.data[resource](id, request);
       return scheduled([new HttpResponse({ body })], asapScheduler)
         .pipe(delay(100 + Math.random() * 3000));
     }

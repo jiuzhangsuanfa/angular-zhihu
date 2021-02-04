@@ -1,5 +1,11 @@
 import { User } from './user';
 
+export enum AnswerStatus {
+  APPROVE = 'approve',
+  OPPOSE = 'oppose',
+  NONE = 'none',
+}
+
 export interface Answer {
 
   id: number;
@@ -13,6 +19,7 @@ export interface Answer {
     comment: number;
   }
   date: Date;
+  status: AnswerStatus;
 
 }
 

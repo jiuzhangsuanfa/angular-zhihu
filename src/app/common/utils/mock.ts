@@ -1,10 +1,18 @@
+import { HttpRequest } from '@angular/common/http';
 import { mock, Random } from 'mockjs';
-import { Answer, AnswerID, Question, QuestionID, User, UserID, Vote, VoteID } from '../interfaces';
+import { Answer, AnswerID, AnswerStatus, Question, QuestionID, QuestionStatus, User, UserID } from '../interfaces';
 
-export const mockVote: (id?: VoteID) => Vote = id => ({
-  id: id ?? Random.increment(),
-  count: Random.integer(0, 99999),
-});
+export const mockVote: (request: HttpRequest<any>) => any = request => {
+  const answerID = request.params.get('answer');
+  const questionID = request.params.get('question');
+  const action = request.params.get('action') as AnswerStatus;
+  return answerID ? mockAnswer(+answerID) : mockQuestion(+questionID!);
+};
+
+const questionStatusList = [
+  QuestionStatus.LIKE,
+  QuestionStatus.NONE,
+];
 
 export const mockQuestion: (id?: QuestionID) => Question = id => ({
   id: id ?? Random.increment(),
@@ -21,7 +29,14 @@ export const mockQuestion: (id?: QuestionID) => Question = id => ({
     'array|1-4': [() => Random.cword(2, 5)],
   })['array'],
   date: new Date(Random.datetime()),
+  status: questionStatusList[Math.random() * questionStatusList.length << 0],
 });
+
+const answerStatusList = [
+  AnswerStatus.APPROVE,
+  AnswerStatus.OPPOSE,
+  AnswerStatus.NONE,
+];
 
 export const mockAnswer: (id?: AnswerID) => Answer = id => ({
   id: Random.increment(),
@@ -37,6 +52,7 @@ export const mockAnswer: (id?: AnswerID) => Answer = id => ({
     comment: Random.integer(0, 99999),
   },
   date: new Date(Random.datetime()),
+  status: answerStatusList[Math.random() * answerStatusList.length << 0],
 });
 
 export const mockUser: (id?: UserID) => User = id => ({

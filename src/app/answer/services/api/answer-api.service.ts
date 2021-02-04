@@ -19,4 +19,28 @@ export class AnswerApiService {
     return this.http.get<Answer>(url);
   }
 
+  approveAnswer(id: AnswerID): Observable<Answer> {
+    const url = urlJoin(HOST, 'votes');
+    const params = { action: 'approve', answer: `${id}` };
+    return this.http.put<Answer>(url, {}, { params });
+  }
+
+  cancelApproveAnswer(id: AnswerID): Observable<Answer> {
+    const url = urlJoin(HOST, 'votes');
+    const params = { action: 'approve', answer: `${id}` };
+    return this.http.delete<Answer>(url, { params });
+  }
+
+  opposeAnswer(id: AnswerID): Observable<Answer> {
+    const url = urlJoin(HOST, 'votes');
+    const params = { action: 'oppose', answer: `${id}` };
+    return this.http.put<Answer>(url, {}, { params });
+  }
+
+  cancelOpposeAnswer(id: AnswerID): Observable<Answer> {
+    const url = urlJoin(HOST, 'votes');
+    const params = { action: 'oppose', answer: `${id}` };
+    return this.http.delete<Answer>(url, { params });
+  }
+
 }

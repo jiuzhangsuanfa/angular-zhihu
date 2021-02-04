@@ -1,5 +1,10 @@
 import { User } from './user';
 
+export enum QuestionStatus {
+  LIKE = 'like',
+  NONE = 'none',
+}
+
 export interface Question {
 
   /** 问题 ID */
@@ -29,6 +34,9 @@ export interface Question {
 
   /** 创建时间 */
   date: Date;
+
+  /** 问题对于当前用户的状态 */
+  status: QuestionStatus;
 
 }
 
