@@ -9,9 +9,12 @@ import { Question } from 'src/app/common/interfaces';
 export class QuestionCardComponent implements OnInit {
 
   @Input('question') question!: Question;
+  content!: string;
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.content = this.question.content.slice(0, 100);
+  }
 
 }

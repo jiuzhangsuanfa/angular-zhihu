@@ -8,7 +8,7 @@
       <span class="motto">{{ question.user.motto }}</span>
     </div>
     <div class="content">
-      <p class="text">{{ question.content }}</p>
+      <p class="text">{{ content }}</p>
       <ng-container *ngIf="question.cover">
         <div class="cover" [style.background-image]="'url(' + question.cover! + ')'"></div>
       </ng-container>
