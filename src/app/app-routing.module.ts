@@ -10,12 +10,14 @@ const routes: Routes = [
   {
     path: 'question',
     loadChildren: () => import('./question/question.module')
-      .then(({ QuestionModule }) => QuestionModule)
+      .then(({ QuestionModule }) => QuestionModule),
+    data: { reuse: true },
   },
   {
     path: 'answer',
     loadChildren: () => import('./answer/answer.module')
-      .then(({ AnswerModule }) => AnswerModule)
+      .then(({ AnswerModule }) => AnswerModule),
+    data: { reuse: true },
   },
 ];
 

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InterceptorModule } from './common/modules/interceptor.module';
 import { SharedModule } from './common/modules/shared.module';
+import { StrategyModule } from './common/modules/strategy.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SharedModule } from './common/modules/shared.module';
     BrowserAnimationsModule,
     SharedModule,
     InterceptorModule,
+    StrategyModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

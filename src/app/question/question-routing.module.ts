@@ -7,12 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: QuestionListComponent,
-    data: { reuse: false },
   },
   {
     path: ':id',
     component: QuestionDetailComponent,
-    data: { reuse: true },
   },
 ];
 
