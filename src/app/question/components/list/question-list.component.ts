@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs/operators';
 import { Question } from 'src/app/common/interfaces';
 import { QuestionApiService } from '../../services/api/question-api.service';
 
@@ -9,7 +10,11 @@ import { QuestionApiService } from '../../services/api/question-api.service';
 })
 export class QuestionListComponent implements OnInit {
 
-  questions: Question[] = [];
+  questions?: Question[];
+
+  status = {
+    loading: false,
+  };
 
   constructor(
     private api: QuestionApiService,
@@ -18,6 +23,16 @@ export class QuestionListComponent implements OnInit {
   ngOnInit() {
     this.api.getQuestions()
       .subscribe(questions => this.questions = questions);
+  }
+
+  loadMore() {
+    if (this.status.loading) {
+      return;
+    }
+    this.status.loading = true;
+    this.api.getQuestions(this.questions && this.questions.length > 0 && this.questions[this.questions.length - 1].id || undefined)
+      .pipe(finalize(() => this.status.loading = false))
+      .subscribe(questions => this.questions ? this.questions.push(...questions) : this.questions = questions);
   }
 
 }

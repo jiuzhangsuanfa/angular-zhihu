@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { Answer, Question, QuestionID } from 'src/app/common/interfaces';
 import { transform } from 'src/app/common/utils';
 import { QuestionApiService } from '../../services/api/question-api.service';
@@ -15,7 +15,11 @@ export class QuestionDetailComponent implements OnInit {
   question?: Question;
   answers?: Answer[];
   id: QuestionID;
-  fetchType!: string;
+  fetchType: 'popular' | 'latest' = 'popular';
+
+  status = {
+    loading: false,
+  };
 
   constructor(
     private api: QuestionApiService,
@@ -41,6 +45,16 @@ export class QuestionDetailComponent implements OnInit {
     this.fetchType = value;
     this.api.getAnswersOfQuestion(this.id)
       .subscribe(answers => this.answers = answers);
+  }
+
+  loadMore() {
+    if (this.status.loading) {
+      return;
+    }
+    this.status.loading = true;
+    this.api.getAnswersOfQuestion(this.id, this.answers && this.answers.length > 0 && this.answers[this.answers.length - 1].id || undefined)
+      .pipe(finalize(() => this.status.loading = false))
+      .subscribe(answers => this.answers ? this.answers.push(...answers) : this.answers = answers);
   }
 
 }

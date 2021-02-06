@@ -143,6 +143,31 @@ ng g c question/components/list/card/question-card --flat
 GET api/questions
 ```
 
+##### 添加 Render
+
+```shell
+npm i -S vditor
+```
+
+```typescript
+// @ts-ignore
+import Vditor from 'vditor/dist/method.min';
+
+await Vditor.md2html(markdown);
+```
+
+##### 添加滚动组件
+
+```shell
+npm i -S ngx-infinite-scroll
+```
+
+##### 添加加载组件
+
+```shell
+npm i -S ngx-spinner
+```
+
 #### 3.1.2 问题详情 Component
 
 ```shell
@@ -188,7 +213,7 @@ ng g c question/components/detail/answer-card/question-detail-answer-card --flat
 GET api/answers?question=<number>
 ```
 
-#### 3.1.4 问题编辑详情页 Component
+#### 3.1.4 问题发布详情页 Component
 
 ```http
 POST api/questions
