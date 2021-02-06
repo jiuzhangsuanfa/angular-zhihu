@@ -7,10 +7,40 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class LoadingComponent implements OnInit {
 
-  @Input('height') height!: string;
+  @Input('background') background: string = 'white';
+  @Input('color') color: string = 'black';
+  @Input('full') full: boolean = false;
+  @Input('size') size: 'large' | 'medium' | 'small' | 'mini' = 'medium';
+  @Input('direction') direction: 'row' | 'column' = 'column';
+
+  width!: number;
+  height!: number;
+  viewBox!: string;
+  transform!: string;
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    const base = 44;
+    switch (this.size) {
+      case 'large':
+        this.width = this.height = base * 3;
+        this.transform = 'scale(3)';
+        break;
+      case 'medium':
+        this.width = this.height = base * 2;
+        this.transform = 'scale(2)';
+        break;
+      case 'mini':
+        this.width = this.height = base * 0.5;
+        this.transform = 'scale(0.5)';
+        break;
+      case 'small':
+      default:
+        this.width = this.height = base * 1;
+        this.transform = 'scale(1)';
+    }
+    this.viewBox = `0 0 ${this.width} ${this.height}`;
+  }
 
 }
