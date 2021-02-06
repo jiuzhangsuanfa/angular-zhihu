@@ -20,16 +20,15 @@ export class MockInterceptor implements HttpInterceptor {
     questions: (id?: QuestionID) => id
       ? mockQuestion(id)
       : mock({ 'array|10': [() => mockQuestion()] })['array'],
-    answers: (id?: AnswerID) => id
-      ? mockAnswer(id)
-      : mock({ 'array|10': [() => mockAnswer()] })['array'],
+    answers: (id?: AnswerID, request?: HttpRequest<any>) => id
+      ? mockAnswer(id, +request?.params.get('question')! || undefined)
+      : mock({ 'array|10': [() => mockAnswer(undefined, +request?.params.get('question')! || undefined)] })['array'],
     users: (id?: UserID) => id
       ? mockUser(id)
       : mock({ 'array|10': [() => mockUser()] })['array'],
   };
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     const link = new Link(request.urlWithParams);
     const resource = link.getResource()!;
     const id = link.getID();

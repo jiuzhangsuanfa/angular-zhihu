@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap, tap } from 'rxjs/operators';
 import { Answer, AnswerID, AnswerStatus, Question } from 'src/app/common/interfaces';
-import { CacheService } from 'src/app/common/services/cache/cache.service';
 import { QuestionApiService } from 'src/app/question/services/api/question-api.service';
 import { AnswerApiService } from '../../services/api/answer-api.service';
 
@@ -20,7 +19,6 @@ export class AnswerDetailComponent implements OnInit {
   constructor(
     private api: AnswerApiService,
     private route: ActivatedRoute,
-    private cache: CacheService,
     private questionApi: QuestionApiService,
   ) {
     this.id = +route.snapshot.paramMap.get('id')!;
@@ -30,7 +28,7 @@ export class AnswerDetailComponent implements OnInit {
     this.api.getAnswer(this.id)
       .pipe(
         tap(answer => this.answer = answer),
-        mergeMap(answer => this.questionApi.getQuestion(answer.id)),
+        mergeMap(answer => this.questionApi.getQuestion(answer.question)),
       )
       .subscribe(question => this.question = question);
   }
