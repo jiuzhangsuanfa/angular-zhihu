@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { Answer, Question, QuestionID } from 'src/app/common/interfaces';
+import { transform } from 'src/app/common/utils';
 import { QuestionApiService } from '../../services/api/question-api.service';
 
 @Component({
@@ -24,15 +26,17 @@ export class QuestionDetailComponent implements OnInit {
 
   ngOnInit() {
     this.api.getQuestion(this.id)
-      .subscribe(question => this.question = question);
-    this.getFetchType('popular');
+      .subscribe(
+        async question => this.question = { ...question, content: await transform(question.content) }
+      );
+    this.fetchAnswers('popular');
   }
 
   trackByAnswerId(index: number, answer: Answer) {
     return answer.id;
   }
 
-  getFetchType(value: 'popular' | 'latest') {
+  fetchAnswers(value: 'popular' | 'latest') {
     this.answers = undefined;
     this.fetchType = value;
     this.api.getAnswersOfQuestion(this.id)

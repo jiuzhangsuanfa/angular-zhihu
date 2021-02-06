@@ -25,6 +25,7 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "url-join-ts": "^1.0.5",
+    "vditor": "^3.8.1",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {

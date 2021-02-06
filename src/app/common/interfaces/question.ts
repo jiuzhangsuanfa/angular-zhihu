@@ -20,7 +20,7 @@ export interface Question {
   user: User;
 
   /** 问题内容 */
-  content?: string;
+  content: string;
 
   /** 回答数量等 */
   count: {

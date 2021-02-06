@@ -26,7 +26,7 @@
         </div>
       </div>
       <p class="approve">{{ answer.count.approve | readify }}人赞同了该回答</p>
-      <p class="content">{{ answer.content }}</p>
+      <article class="content" [innerHTML]="answer.content"></article>
       <p class="date">编辑于 {{ answer.date | date:'YYYY-MM-dd' }}</p>
 
     </div>

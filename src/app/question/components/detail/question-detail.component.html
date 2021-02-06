@@ -6,7 +6,7 @@
         <span class="tag" *ngFor="let tag of question.tags">{{ tag }}</span>
       </div>
       <h2 class="title">{{ question.title }}</h2>
-      <p class="content">{{ question.content }}</p>
+      <article class="content" [innerHTML]="question.content"></article>
       <div class="count">
         <span>{{ question.count.visit | readify }}浏览</span>
         <span>{{ question.count.answer | readify }}回答</span>
@@ -20,7 +20,7 @@
 
   <div class="filter">
     <span class="title">回答 {{ question && question.count.answer || 0 }}</span>
-    <app-question-detail-switch (value)="getFetchType($event)"></app-question-detail-switch>
+    <app-question-detail-switch (value)="fetchAnswers($event)"></app-question-detail-switch>
   </div>
 
   <div class="answers">

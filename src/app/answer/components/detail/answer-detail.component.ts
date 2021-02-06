@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap, tap } from 'rxjs/operators';
 import { Answer, AnswerID, AnswerStatus, Question } from 'src/app/common/interfaces';
+import { transform } from 'src/app/common/utils';
 import { QuestionApiService } from 'src/app/question/services/api/question-api.service';
 import { AnswerApiService } from '../../services/api/answer-api.service';
 
@@ -27,7 +28,7 @@ export class AnswerDetailComponent implements OnInit {
   ngOnInit() {
     this.api.getAnswer(this.id)
       .pipe(
-        tap(answer => this.answer = answer),
+        tap(async answer => this.answer = { ...answer, content: await transform(answer.content) }),
         mergeMap(answer => this.questionApi.getQuestion(answer.question)),
       )
       .subscribe(question => this.question = question);
