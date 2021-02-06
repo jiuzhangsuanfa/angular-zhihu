@@ -29,6 +29,10 @@
       <p class="content">{{ answer.content }}</p>
       <p class="date">编辑于 {{ answer.date | date:'YYYY-MM-dd' }}</p>
 
+    </div>
+
+    <ng-container *ngIf="answer">
+
       <div class="action">
         <div class="buttons">
           <button class="approve" [class.active]="answer.status === 'approve'" (click)="approve()">
@@ -50,7 +54,7 @@
         <button class="comment">评论 {{ answer.count.comment }}</button>
       </div>
 
-    </div>
+    </ng-container>
 
   </ng-container>
 
