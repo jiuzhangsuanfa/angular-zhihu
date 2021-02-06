@@ -124,6 +124,17 @@ const routes: Routes = [
 
 **创建 API Service**
 
+添加 url join 依赖包。
+
+```shell
+npm i -D proper-url-join
+npm i --save-dev @types/proper-url-join
+```
+
+```typescript
+import urlJoin from 'proper-url-join';
+```
+
 ```shell
 ng g s question/services/question-api
 ```

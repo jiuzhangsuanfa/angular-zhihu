@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HOST } from 'src/app/common/constants';
 import { Answer, Question, QuestionID } from 'src/app/common/interfaces';
-import { urlJoin } from 'url-join-ts';
+import urlJoin from 'proper-url-join';
 
 @Injectable({
   providedIn: 'root'

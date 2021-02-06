@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import urlJoin from 'proper-url-join';
 import { Observable } from 'rxjs';
 import { HOST } from 'src/app/common/constants';
-import { Answer, AnswerID, Question, QuestionID } from 'src/app/common/interfaces';
-import { urlJoin } from 'url-join-ts';
+import { Answer, AnswerID } from 'src/app/common/interfaces';
 
 @Injectable({
   providedIn: 'root'
