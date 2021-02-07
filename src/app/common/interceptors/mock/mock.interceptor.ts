@@ -3,7 +3,7 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-  HttpResponse
+  HttpResponse,
 } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
 import { mock } from 'mockjs';
@@ -20,9 +20,9 @@ export class MockInterceptor implements HttpInterceptor {
     questions: (id?: QuestionID) => id
       ? mockQuestion(id)
       : mock({ 'array|10': [() => mockQuestion()] })['array'],
-    answers: (id?: AnswerID, request?: HttpRequest<any>) => id
-      ? mockAnswer(id, +request?.params.get('question')! || undefined)
-      : mock({ 'array|10': [() => mockAnswer(undefined, +request?.params.get('question')! || undefined)] })['array'],
+    answers: (id?: AnswerID, link?: Link) => id
+      ? mockAnswer(id, +link?.getParam('question')! || undefined)
+      : mock({ 'array|10': [() => mockAnswer(undefined, +link?.getParam('question')! || undefined)] })['array'],
     users: (id?: UserID) => id
       ? mockUser(id)
       : mock({ 'array|10': [() => mockUser()] })['array'],
@@ -34,7 +34,7 @@ export class MockInterceptor implements HttpInterceptor {
     const id = link.getID();
 
     if (isDevMode()) {
-      const body = this.data[resource](id, request);
+      const body = this.data[resource](id, link);
       return of(new HttpResponse({ body }))
         .pipe(
           delay(100 + Math.random() * 3000),
