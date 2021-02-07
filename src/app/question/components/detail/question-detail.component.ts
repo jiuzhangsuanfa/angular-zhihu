@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { finalize, map } from 'rxjs/operators';
-import { Answer, Question, QuestionID } from 'src/app/common/interfaces';
-import { transform } from 'src/app/common/utils';
+import { Answer, Question, QuestionID, ResourceType } from 'src/app/common/interfaces';
+import { Link, transform } from 'src/app/common/utils';
 import { QuestionApiService } from '../../services/api/question-api.service';
 
 @Component({
@@ -48,7 +48,8 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   loadMore() {
-    if (this.status.loading || this.answers === undefined) {
+    const { resource, id } = new Link(location.href);
+    if (this.status.loading || resource !== ResourceType.QUESTION || id === undefined || this.answers === undefined) {
       return;
     }
     this.status.loading = true;

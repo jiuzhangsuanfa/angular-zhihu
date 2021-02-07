@@ -29,9 +29,9 @@ export class MockInterceptor implements HttpInterceptor {
   };
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
     const link = new Link(request.urlWithParams);
-    const resource = link.getResource()!;
-    const id = link.getID();
+    const { resource, id } = link;
 
     if (isDevMode()) {
       const body = this.data[resource](id, link);
@@ -40,7 +40,9 @@ export class MockInterceptor implements HttpInterceptor {
           delay(100 + Math.random() * 3000),
         );
     }
+
     return next.handle(request);
+
   }
 
 }

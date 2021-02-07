@@ -4,6 +4,10 @@ export * from './user';
 export * from './vote';
 
 export enum ResourceType {
-  ANSWER = 'answers',
-  QUESTION = 'questions',
+  ANSWER = 'answer',
+  ANSWERS = 'answers',
+  QUESTION = 'question',
+  QUESTIONS = 'questions',
+  VOTES = 'votes',
+  NONE = '',
 }

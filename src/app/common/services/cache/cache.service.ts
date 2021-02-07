@@ -11,8 +11,8 @@ export class CacheService {
       [index: number]: Question | Answer
     }
   } = {
-      [ResourceType.ANSWER]: {},
-      [ResourceType.QUESTION]: {},
+      [ResourceType.ANSWERS]: {},
+      [ResourceType.QUESTIONS]: {},
     };
 
   constructor() { }
