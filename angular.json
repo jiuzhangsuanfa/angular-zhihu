@@ -31,7 +31,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/index.scss",
+              "src/styles/material.scss",
+              "src/styles/editor.scss"
             ],
             "scripts": []
           },
@@ -94,7 +96,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/index.scss",
+              "src/styles/material.scss",
+              "src/styles/editor.scss"
             ],
             "scripts": []
           }

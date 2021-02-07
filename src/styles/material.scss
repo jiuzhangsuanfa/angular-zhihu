@@ -1,5 +1,4 @@
 @import '~@angular/material/theming';
-@import url('https://cdn.jsdelivr.net/gh/tonsky/FiraCode@4/distr/fira_code.css');
 
 $zhihu-primary: mat-palette($mat-blue);
 $zhihu-accent : mat-palette($mat-pink, A200, A100, A400);
@@ -29,51 +28,3 @@ $custom-typography: mat-typography-config($font-family: '"Fira Code", "Microsoft
   $input: mat-typography-level(inherit, 1.125, 400));
 
 @include mat-core($custom-typography);
-
-// reset body margin
-body {
-  margin    : 0;
-  padding   : 0;
-  min-height: 100vh;
-}
-
-// set default height
-html,
-body {
-  height: 100%;
-}
-
-// reset link style & add link underline style
-a,
-a:link,
-a:active,
-a:visited {
-  position       : relative;
-  color          : #3298db;
-  text-decoration: none;
-  transition     : color 0.3s ease-in-out;
-}
-
-a:hover {
-  color: #0180d4;
-}
-
-a.animation::after {
-  content: '';
-
-  width   : 100%;
-  height  : 0.05rem;
-  position: absolute;
-  bottom  : -0.05rem;
-  left    : 0;
-
-  background-color: currentColor;
-  transform       : scaleX(0);
-  transform-origin: left;
-  transition      : all .35s;
-}
-
-a.animation:hover::after {
-  transform       : scale(1);
-  transform-origin: right;
-}
