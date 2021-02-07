@@ -17,7 +17,7 @@ const routes: Routes = [
     path: 'answer',
     loadChildren: () => import('./answer/answer.module')
       .then(({ AnswerModule }) => AnswerModule),
-    data: { reuse: true },
+    data: { reuse: false },
   },
 ];
 
