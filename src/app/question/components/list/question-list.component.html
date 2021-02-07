@@ -10,7 +10,7 @@
   </ng-container>
 
   <ng-container *ngIf="questions && questions.length > 0">
-    <app-question-card *ngFor="let question of questions" [question]="question"
+    <app-question-card *ngFor="let question of questions; trackBy: trackByID" [question]="question"
       [routerLink]="[ '/question', question.id ]"></app-question-card>
   </ng-container>
 

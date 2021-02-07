@@ -35,4 +35,8 @@ export class QuestionListComponent implements OnInit {
       .subscribe(questions => this.questions ? this.questions.push(...questions) : this.questions = questions);
   }
 
+  trackByID(index: number, question: Question) {
+    return question.id;
+  }
+
 }
