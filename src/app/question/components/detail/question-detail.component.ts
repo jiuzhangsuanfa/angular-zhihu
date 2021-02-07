@@ -33,7 +33,7 @@ export class QuestionDetailComponent implements OnInit {
       .subscribe(
         async question => this.question = { ...question, content: await transform(question.content) }
       );
-    this.fetchAnswers('popular');
+    this.fetchAnswers(this.fetchType);
   }
 
   trackByAnswerId(index: number, answer: Answer) {
@@ -48,11 +48,11 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   loadMore() {
-    if (this.status.loading) {
+    if (this.status.loading || this.answers === undefined) {
       return;
     }
     this.status.loading = true;
-    this.api.getAnswersOfQuestion(this.id, this.answers && this.answers.length > 0 && this.answers[this.answers.length - 1].id || undefined)
+    this.api.getAnswersOfQuestion(this.id, this.answers.length > 0 && this.answers[this.answers.length - 1].id || undefined)
       .pipe(finalize(() => this.status.loading = false))
       .subscribe(answers => this.answers ? this.answers.push(...answers) : this.answers = answers);
   }
