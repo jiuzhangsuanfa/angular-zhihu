@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HOST } from 'src/app/common/constants';
+import { HOST as host } from 'src/app/common/constants';
 import { Answer, Question, QuestionID } from 'src/app/common/interfaces';
-import urlJoin from 'proper-url-join';
+import { join } from 'src/app/common/utils';
 
 @Injectable({
   providedIn: 'root'
@@ -15,43 +15,43 @@ export class QuestionApiService {
   ) { }
 
   getQuestions(start: QuestionID = 0): Observable<Question[]> {
-    const url = urlJoin(HOST, 'questions')
+    const url = join({ host, segments: ['questions'] });
     return this.http.get<Question[]>(url);
   }
 
   getQuestion(id: QuestionID): Observable<Question> {
-    const url = urlJoin(HOST, 'questions', `${id}`);
+    const url = join({ host, segments: ['questions', id] });
     return this.http.get<Question>(url);
   }
 
   approveQuestion(id: QuestionID): Observable<Question> {
-    const url = urlJoin(HOST, 'votes');
-    const params = { action: 'approve', question: `${id}` };
-    return this.http.put<Question>(url, {}, { params });
+    const params = { action: 'approve', question: id };
+    const url = join({ host, segments: ['votes'], params });
+    return this.http.put<Question>(url, {});
   }
 
   cancelApproveQuestion(id: QuestionID): Observable<Question> {
-    const url = urlJoin(HOST, 'votes');
-    const params = { action: 'approve', question: `${id}` };
-    return this.http.delete<Question>(url, { params });
+    const params = { action: 'approve', question: id };
+    const url = join({ host, segments: ['votes'], params });
+    return this.http.delete<Question>(url);
   }
 
   opposeQuestion(id: QuestionID): Observable<Question> {
-    const url = urlJoin(HOST, 'votes');
-    const params = { action: 'oppose', question: `${id}` };
-    return this.http.put<Question>(url, {}, { params });
+    const params = { action: 'oppose', question: id };
+    const url = join({ host, segments: ['votes'], params });
+    return this.http.put<Question>(url, {});
   }
 
   cancelOpposeQuestion(id: QuestionID): Observable<Question> {
-    const url = urlJoin(HOST, 'votes');
-    const params = { action: 'oppose', question: `${id}` };
-    return this.http.delete<Question>(url, { params });
+    const params = { action: 'oppose', question: id };
+    const url = join({ host, segments: ['votes'], params });
+    return this.http.delete<Question>(url);
   }
 
   getAnswersOfQuestion(question: QuestionID, next: QuestionID = 0): Observable<Answer[]> {
-    const url = urlJoin(HOST, 'answers');
-    const params = { question: `${question}`, next: `${next}` };
-    return this.http.get<Answer[]>(url, { params });
+    const params = { question, next };
+    const url = join({ host, segments: ['answers'], params });
+    return this.http.get<Answer[]>(url);
   }
 
 }
