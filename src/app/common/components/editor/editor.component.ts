@@ -15,6 +15,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
   @Input() value: string = '';
   @Output() valueChange: EventEmitter<string> = new EventEmitter();
 
+  @Output('after') afterEmitter: EventEmitter<boolean> = new EventEmitter();
+
   @Input('placeholder') placeholder = '在这里输入正文内容';
 
   @ViewChild('editor') editor!: ElementRef<HTMLDivElement>;
@@ -28,7 +30,6 @@ export class EditorComponent implements OnInit, AfterViewInit {
   ngOnInit() { }
 
   ngAfterViewInit() {
-    console.log(this.editor);
     this.vditor = new Vditor(this.editor.nativeElement, {
       undoDelay: 100,
       width: 'auto',
@@ -36,7 +37,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
       placeholder: this.placeholder,
       mode: 'ir',
       value: this.value,
-      typewriterMode: true,
+      typewriterMode: false,
       input: () => this.valueChange.emit(this.vditor.getValue()),
       theme: 'classic',
       icon: 'material',
@@ -76,7 +77,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
         format: this.format.bind(this),
         error: this.error.bind(this),
       },
-      after: () => { },
+      after: () => this.afterEmitter.emit(true),
     });
   }
 
