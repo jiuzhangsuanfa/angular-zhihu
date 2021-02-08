@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { HOST as host } from 'src/app/common/constants';
 import { ResourceType } from 'src/app/common/interfaces';
 import { join } from 'src/app/common/utils';
@@ -11,6 +11,9 @@ import Vditor from 'vditor';
   styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit, AfterViewInit {
+
+  @Input() value: string = '';
+  @Output() valueChange: EventEmitter<string> = new EventEmitter();
 
   @Input('placeholder') placeholder = '在这里输入正文内容';
 
@@ -32,7 +35,9 @@ export class EditorComponent implements OnInit, AfterViewInit {
       height: 'auto',
       placeholder: this.placeholder,
       mode: 'ir',
-      value: undefined,
+      value: this.value,
+      typewriterMode: true,
+      input: () => this.valueChange.emit(this.vditor.getValue()),
       theme: 'classic',
       icon: 'material',
       toolbar: [
@@ -49,7 +54,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
         pin: true,
       },
       counter: {
-        enable: true,
+        enable: false,
         type: 'markdown',
       },
       cache: {
