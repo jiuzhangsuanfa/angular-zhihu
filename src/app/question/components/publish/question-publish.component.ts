@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { LoadingType, ResourceType } from 'src/app/common/interfaces';
 import { sleep } from 'src/app/common/utils';
 import { QuestionApiService } from '../../services/api/question-api.service';
