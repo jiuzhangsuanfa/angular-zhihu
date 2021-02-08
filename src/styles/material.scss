@@ -29,13 +29,27 @@ $custom-typography: mat-typography-config($font-family: '"Fira Code", "Microsoft
 
 @include mat-core($custom-typography);
 
-mat-label {
-  display        : flex;
-  flex-direction : row;
-  justify-content: flex-start;
-  align-items    : center;
+mat-form-field {
 
-  >i {
-    margin-right: 0.5rem;
+  mat-label {
+    display        : flex;
+    flex-direction : row;
+    justify-content: flex-start;
+    align-items    : center;
+
+    >i {
+      margin-right: 0.5rem;
+    }
   }
+
+  /* Font color */
+  input.mat-input-element {
+    font-weight: bold;
+  }
+
+}
+
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #00000000;
 }
