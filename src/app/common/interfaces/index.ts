@@ -8,6 +8,7 @@ export enum ResourceType {
   ANSWERS = 'answers',
   QUESTION = 'question',
   QUESTIONS = 'questions',
+  IMAGES = 'images',
   VOTES = 'votes',
   NONE = '',
 }
