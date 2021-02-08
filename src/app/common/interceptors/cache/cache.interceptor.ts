@@ -30,21 +30,16 @@ export class CacheInterceptor implements HttpInterceptor {
       );
     }
 
-    if (resource && id) {
-      return next
-        .handle(request)
-        .pipe(
-          filter((event: any) => event instanceof HttpResponse),
-          tap(({ body }: HttpResponse<any>) => this.cache.set(resource, body)),
-        );
-    }
-
     if (resource) {
       return next
         .handle(request)
         .pipe(
           filter((event: any) => event instanceof HttpResponse),
-          tap(({ body }: HttpResponse<any[]>) => body?.forEach(value => this.cache.set(resource, value))),
+          tap(
+            ({ body }: HttpResponse<any | any[]>) => Array.isArray(body)
+              ? body.forEach(value => this.cache.set(resource, value))
+              : this.cache.set(resource, body)
+          ),
         );
     }
 

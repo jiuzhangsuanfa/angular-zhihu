@@ -24,6 +24,11 @@ export class QuestionApiService {
     return this.http.get<Question>(url);
   }
 
+  publishQuestion(question: Partial<Question>): Observable<Question> {
+    const url = join({ host, segments: [ResourceType.QUESTIONS] });
+    return this.http.post<Question>(url, question);
+  }
+
   approveQuestion(id: QuestionID): Observable<Question> {
     const params = { action: 'approve', question: id };
     const url = join({ host, segments: [ResourceType.VOTES], params });

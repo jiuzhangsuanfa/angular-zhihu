@@ -9,7 +9,7 @@ import { Injectable, isDevMode } from '@angular/core';
 import { mock } from 'mockjs';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { AnswerID, QuestionID, UserID } from '../../interfaces';
+import { AnswerID, Question, QuestionID, ResourceType, UserID } from '../../interfaces';
 import { Link, mockAnswer, mockQuestion, mockUser, mockVote } from '../../utils';
 
 @Injectable()
@@ -34,7 +34,7 @@ export class MockInterceptor implements HttpInterceptor {
     const { resource, id } = link;
 
     if (isDevMode()) {
-      const body = this.data[resource](id, link);
+      const body = this.adapt(request, link) || this.data[resource](id, link);
       return of(new HttpResponse({ body }))
         .pipe(
           delay(100 + Math.random() * 3000),
@@ -43,6 +43,18 @@ export class MockInterceptor implements HttpInterceptor {
 
     return next.handle(request);
 
+  }
+
+  adapt(request: HttpRequest<any>, { id, resource, params }: Link): any | undefined {
+    if (resource === ResourceType.QUESTIONS && request.method === 'POST') {
+      const question: Question = {
+        ...mockQuestion(),
+        title: request.body.title,
+        content: request.body.content,
+        tags: request.body.tags,
+      };
+      return question;
+    }
   }
 
 }
