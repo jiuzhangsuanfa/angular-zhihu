@@ -103,7 +103,7 @@ export class AppRoutingModule { }
 
 ## 3 模块设计
 
-### 3.1 问答模块
+### 3.1 问题模块
 
 **创建 Module**
 
@@ -217,6 +217,17 @@ GET api/answers?question=<number>
 
 ```http
 POST api/questions
+```
+
+```shell
+ng g c question/components/question-publish
+```
+
+**引入 Vditor**
+
+```shell
+ng g m common/components/editor
+ng g c common/components/editor
 ```
 
 ### 3.2 回答模块

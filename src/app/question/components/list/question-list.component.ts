@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { Question, ResourceType } from 'src/app/common/interfaces';
 import { Link } from 'src/app/common/utils';

@@ -12,3 +12,11 @@ export enum ResourceType {
   VOTES = 'votes',
   NONE = '',
 }
+
+export enum LoadingType {
+  INIT = 0,
+  LOADING = 1,
+  SUCCEED = 2,
+  FAILED = 3,
+  CANCEL = 4,
+}
