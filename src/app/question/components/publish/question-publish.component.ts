@@ -44,7 +44,7 @@ export class QuestionPublishComponent implements OnInit {
       content: this.content.trim(),
     }).pipe(
       catchError(async error => {
-        this.bar.open('问题发布失败，请稍后重试', '了解', { duration: 3000 });
+        this.bar.open('问题发布失败，请稍后重试', '', { duration: 3000 });
         this.status.publishing = LoadingType.FAILED;
         await sleep(3000);
         this.status.publishing = LoadingType.INIT;
@@ -52,7 +52,7 @@ export class QuestionPublishComponent implements OnInit {
       }),
     ).subscribe(async ({ id }) => {
       this.status.publishing = LoadingType.SUCCEED;
-      this.bar.open('问题发布成功，正在跳转...', '立刻跳转', { duration: 1500 });
+      this.bar.open('问题发布成功，正在跳转...', '', { duration: 1500 });
       await sleep(1500);
       this.bar.dismiss();
       this.router.navigate([ResourceType.QUESTION, id]);
