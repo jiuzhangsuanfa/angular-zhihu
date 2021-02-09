@@ -36,13 +36,13 @@ input {
 
   &.prefix {
     position: absolute;
-    top     : calc((13px + 1rem) / 2 - (16px + 8px) / 2);
+    top     : calc((13px + 1rem) / 2 - (20px + 2px) / 2);
     left    : 0.5rem;
   }
 
   &.suffix {
     position: absolute;
-    top     : calc((13px + 0.5rem * 2 - 16px - 2px * 2) / 2);
+    top     : calc((13px + 1rem) / 2 - (20px + 2px) / 2);
     right   : 0.5rem;
   }
 }

@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.innerValue = this.value;
     this.subscription = this.subject
-      .pipe(throttleTime(150))
+      .pipe(throttleTime(200))
       .subscribe(value => this.valueChange.emit(this.innerValue = value));
   }
 
