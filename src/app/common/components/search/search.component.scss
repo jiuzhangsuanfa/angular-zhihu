@@ -3,6 +3,7 @@
   flex-direction: column;
   width         : 100%;
   position      : relative;
+  outline       : none;
 }
 
 input {
@@ -19,6 +20,7 @@ input {
   border-radius: 2rem;
   background   : #f6f6f6;
   color        : gray;
+  outline      : none;
 
   &:focus {
     outline: none;
