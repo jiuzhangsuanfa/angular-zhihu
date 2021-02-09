@@ -34,7 +34,7 @@ export class QuestionPublishComponent implements OnInit {
   }
 
   publish() {
-    if (this.status.publishing) {
+    if (this.status.publishing !== LoadingType.INIT) {
       return;
     }
     this.status.publishing = LoadingType.LOADING;
