@@ -41,4 +41,9 @@
     </ng-container>
   </div>
 
+  <button mat-mini-fab class="publish" color="primary" [routerLink]="[ '/answer/new', { question: question?.id } ]"
+    matTooltip="点击添加回答">
+    <i class="ri-pen-nib-line"></i>
+  </button>
+
 </div>

@@ -9,7 +9,7 @@ import { Injectable, isDevMode } from '@angular/core';
 import { mock } from 'mockjs';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { AnswerID, Question, QuestionID, ResourceType, UserID } from '../../interfaces';
+import { Answer, AnswerID, AnswerStatus, Question, QuestionID, ResourceType, UserID } from '../../interfaces';
 import { Link, mockAnswer, mockQuestion, mockUser, mockVote } from '../../utils';
 
 @Injectable()
@@ -52,8 +52,26 @@ export class MockInterceptor implements HttpInterceptor {
         title: request.body.title,
         content: request.body.content,
         tags: request.body.tags,
+        count: {
+          answer: 0,
+          like: 0,
+          visit: 0,
+        },
       };
       return question;
+    } else if (resource === ResourceType.ANSWERS && request.method === 'POST') {
+      const answer: Answer = {
+        ...mockAnswer(),
+        question: request.body.question,
+        content: request.body.content,
+        count: {
+          approve: 0,
+          oppose: 0,
+          comment: 0,
+        },
+        status: AnswerStatus.NONE,
+      };
+      return answer;
     }
   }
 
