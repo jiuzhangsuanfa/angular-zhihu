@@ -44,9 +44,15 @@ mat-form-field {
 
 }
 
-/* input border */
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #00000000;
+.no-border {
+  .mat-form-field-outline {
+    color: #00000000;
+  }
+
+  .mat-form-field-suffix {
+    display       : flex;
+    flex-direction: column;
+  }
 }
 
 .no-padding {
