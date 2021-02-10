@@ -11,10 +11,12 @@
   padding       : 1rem;
 
   >.actions {
-    display        : flex;
-    flex-direction : row;
-    justify-content: space-between;
-    align-items    : center;
+    display         : flex;
+    flex-direction  : row;
+    justify-content : space-between;
+    align-items     : center;
+    background-color: white;
+    z-index         : 1;
 
     position: sticky;
     top     : 0;
