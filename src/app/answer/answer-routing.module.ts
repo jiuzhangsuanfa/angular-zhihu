@@ -12,6 +12,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: AnswerDetailComponent,
+    data: { reuse: true },
   },
 ];
 

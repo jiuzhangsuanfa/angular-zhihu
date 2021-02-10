@@ -473,6 +473,12 @@ export class ReadifyPipe implements PipeTransform {
 }
 ```
 
+#### 3.4.4 Toolbar 顶部导航工具栏
+
+```shell
+ng g m common/components/toolbar && ng g c common/components/toolbar
+```
+
 ## 4 启用 Mock API Server
 
 ### 4.1 创建拦截器
