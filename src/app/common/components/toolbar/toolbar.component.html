@@ -1,0 +1,17 @@
+<ng-container *ngIf="type === 'custom'">
+  <ng-content></ng-content>
+</ng-container>
+
+<ng-container *ngIf="type === 'action'">
+  <div class="action">
+    <button mat-icon-button><i class="icon ri-arrow-left-line" [routerLink]="[ back ]"></i></button>
+    <button mat-icon-button><i class="icon ri-search-eye-line" [routerLink]="[ '/search' ]"></i></button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type === 'search'">
+  <div class="search">
+    <app-search [disabled]="true" [routerLink]="[ '/search' ]"></app-search>
+    <button mat-icon-button [routerLink]="[ '/user' ]"><i class="icon ri-user-line"></i></button>
+  </div>
+</ng-container>
