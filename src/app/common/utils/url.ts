@@ -21,8 +21,10 @@ export const join: (input: URLInput) => string = ({ host, segments, params }) =>
   const url = [host, ...paths]
     .filter(v => v)
     .join('/')
+    .replace('://', '~PROTOCOL~')
     .replace(/\/+/g, '/')
     .replace(/\/$/, '')
+    .replace('~PROTOCOL~', '://')
     + (queries.length ? '?' : '')
     + queries.join('&');
 
