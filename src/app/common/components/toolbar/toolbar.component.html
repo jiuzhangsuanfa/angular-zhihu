@@ -4,8 +4,12 @@
 
 <ng-container *ngIf="type === 'action'">
   <div class="action">
-    <button mat-icon-button><i class="icon ri-arrow-left-line" [routerLink]="[ back ]"></i></button>
-    <button mat-icon-button><i class="icon ri-search-eye-line" [routerLink]="[ '/search' ]"></i></button>
+    <button mat-icon-button [disabled]="disabled" [routerLink]="[ back ]">
+      <i class="icon ri-arrow-left-line"></i>
+    </button>
+    <button mat-icon-button [disabled]="disabled" [routerLink]="[ '/search' ]">
+      <i class="icon ri-search-eye-line"></i>
+    </button>
   </div>
 </ng-container>
 

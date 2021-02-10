@@ -9,7 +9,8 @@ import { ToolbarType } from '../../interfaces';
 export class ToolbarComponent implements OnInit {
 
   @Input('type') type: string = ToolbarType.CUSTOM;
-  @Input('back') back: string = '/question';
+  @Input('back') back: string = '..';
+  @Input('disabled') disabled: boolean = false;
 
   constructor() { }
 

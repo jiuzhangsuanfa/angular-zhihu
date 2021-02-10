@@ -5,6 +5,11 @@ import { AnswerPublishComponent } from './components/publish/answer-publish.comp
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/question',
+  },
+  {
     path: 'new',
     component: AnswerPublishComponent,
     data: { reuse: false },
@@ -12,7 +17,6 @@ const routes: Routes = [
   {
     path: ':id',
     component: AnswerDetailComponent,
-    data: { reuse: true },
   },
 ];
 

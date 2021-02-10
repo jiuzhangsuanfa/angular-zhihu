@@ -1,5 +1,5 @@
 import { ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy } from '@angular/router';
-import { concat, getPaths } from '../../utils';
+import { getRouteKey } from '../../utils';
 
 export class ReuseStrategy extends RouteReuseStrategy {
 
@@ -10,15 +10,20 @@ export class ReuseStrategy extends RouteReuseStrategy {
   }
 
   store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
-    this.cache.set(concat(getPaths(route.root)), handle);
+    this.cache.set(getRouteKey(route), handle);
   }
 
   shouldAttach(route: ActivatedRouteSnapshot): boolean {
-    return this.cache.has(concat(getPaths(route.root)));
+    const result: any = this.cache.get(getRouteKey(route));
+    return route.routeConfig === result?.route.value.routeConfig;
   }
 
-  retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
-    return this.cache.get(concat(getPaths(route.root)))!;
+  retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle | null {
+    const result: any = this.cache.get(getRouteKey(route)) ?? null;
+    if (route.routeConfig !== result?.route.value.routeConfig) {
+      return null;
+    }
+    return result;
   }
 
   shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {

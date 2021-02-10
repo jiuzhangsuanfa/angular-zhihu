@@ -17,6 +17,8 @@ export class AnswerDetailComponent implements OnInit {
   answer?: Answer;
   question?: Question;
 
+  back: string = '/question';
+
   constructor(
     private api: AnswerApiService,
     private route: ActivatedRoute,
@@ -31,7 +33,10 @@ export class AnswerDetailComponent implements OnInit {
         tap(async answer => this.answer = { ...answer, content: await transform(answer.content) }),
         mergeMap(answer => this.questionApi.getQuestion(answer.question)),
       )
-      .subscribe(question => this.question = question);
+      .subscribe(question => {
+        this.question = question;
+        this.back = `/question/${question.id}`;
+      });
   }
 
   approve() {
