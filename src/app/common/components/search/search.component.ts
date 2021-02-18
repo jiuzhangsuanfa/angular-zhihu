@@ -14,6 +14,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   @Input() value: string = '';
   @Output() valueChange: EventEmitter<any> = new EventEmitter();
 
+  @Output('enter') enterEmitter: EventEmitter<any> = new EventEmitter();
+
   private subject: Subject<string> = new Subject();
   private subscription?: Subscription;
 
@@ -30,6 +32,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
+  }
+
+  enter() {
+    this.enterEmitter.next(this.value);
   }
 
   emit(event: any) {

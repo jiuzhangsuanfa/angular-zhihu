@@ -1,4 +1,4 @@
-<input #search type="text" (keyup)="emit($event)" [value]="value" [disabled]="disabled" placeholder="上之乎，学者也"
-  autocomplete="off">
+<input #search type="text" (keyup.enter)="enter()" (keyup)="emit($event)" [value]="value" [disabled]="disabled"
+  placeholder="上之乎，学者也" autocomplete="off">
 <i class="prefix icon ri-zhihu-fill"></i>
 <i *ngIf="exist()" class="suffix icon ri-close-line" matRipple (click)="clear()"></i>
