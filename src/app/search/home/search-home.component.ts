@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { STORAGE_KEY_SEARCH_HISTORY } from '../constants';
-import { HistoryService } from '../service/history.service';
+import { SearchHistoryService } from '../service/search-history.service';
 
 @Component({
   selector: 'app-search-home',
@@ -19,7 +18,7 @@ export class SearchHomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private history: HistoryService,
+    private history: SearchHistoryService,
   ) {
     this.subscription = history.subject.subscribe(list => this.list = list);
   }

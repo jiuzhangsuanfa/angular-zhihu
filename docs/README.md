@@ -487,8 +487,12 @@ ng g m search --routing
 
 ```shell
 ng g c search/home/search-home --flat
-# ng g c search/suggestion/search-suggestion --flat
 ng g c search/result/search-result --flat
+```
+
+```shell
+ng g s search/service/search-api
+ng g s search/service/search-history
 ```
 
 ## 4 启用 Mock API Server

@@ -5,7 +5,7 @@ import { STORAGE_KEY_SEARCH_HISTORY } from '../constants';
 @Injectable({
   providedIn: 'root'
 })
-export class HistoryService {
+export class SearchHistoryService {
 
   readonly subject: Subject<string[]> = new Subject();
 

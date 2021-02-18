@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SearchResult } from '../interfaces';
-import { HistoryService } from '../service/history.service';
+import { SearchHistoryService } from '../service/search-history.service';
 
 @Component({
   selector: 'app-search-result',
@@ -19,7 +19,7 @@ export class SearchResultComponent implements OnInit {
   };
 
   constructor(
-    private history: HistoryService,
+    private history: SearchHistoryService,
     private route: ActivatedRoute,
   ) {
     this.value = route.snapshot.params.keyword;

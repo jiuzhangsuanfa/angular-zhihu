@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { ApiService } from './api.service';
+import { SearchHistoryService } from './search-history.service';
 
-describe('ApiService', () => {
+describe('SearchHistoryService', () => {
 
-  let service: ApiService;
+  let service: SearchHistoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiService);
+    service = TestBed.inject(SearchHistoryService);
   });
 
   it('should be created', () => {
