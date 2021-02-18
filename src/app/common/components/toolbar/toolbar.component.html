@@ -24,9 +24,10 @@
 
 <ng-container *ngIf="type === 'search'">
   <div class="search">
-    <app-search #input (enter)="action._elementRef.nativeElement.click()"></app-search>
-    <button #action mat-icon-button (click)="search && search(input.value)">
-      <i class="icon ri-search-2-line"></i>
+    <app-search #input (enter)="input.value && action._elementRef.nativeElement.click()"></app-search>
+    <button #action mat-icon-button
+      (click)="input.value ? search && search(input.value) : router.navigateByUrl('/question')">
+      <i class="icon" [class.ri-search-2-line]="!!input.value" [class.ri-arrow-go-back-line]="!input.value"></i>
     </button>
   </div>
 </ng-container>

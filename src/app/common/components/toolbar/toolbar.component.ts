@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToolbarType } from '../../interfaces';
 
 @Component({
@@ -13,7 +14,9 @@ export class ToolbarComponent implements OnInit {
   @Input('disabled') disabled: boolean = false;
   @Input('search') search?: (value: string) => any;
 
-  constructor() { }
+  constructor(
+    public router: Router,
+  ) { }
 
   ngOnInit() { }
 
