@@ -1,5 +1,24 @@
 # 开发日志
 
+## 0 创建项目
+
+```shell
+# Install the Angular CLI and @angular-eslint/schematics globally however you want (e.g. npm, yarn, volta etc)
+
+npm i -g @angular/cli @angular-devkit/{core,schematics} @angular-eslint/schematics
+
+# Create a new Angular CLI workspace using the @angular-eslint/schematics collection (instead of the default)
+
+ng new --collection=@angular-eslint/schematics --strict --style=scss --skip-git --routing
+```
+
+> 修改已有项目为 ESLint
+
+```shell
+ng add @angular-eslint/schematics
+ng g @angular-eslint/schematics:convert-tslint-to-eslint angular-zhihu
+```
+
 ## 1 启用 Angular Material 支持
 
 ```shell
