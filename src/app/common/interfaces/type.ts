@@ -5,6 +5,7 @@ export enum ResourceType {
   QUESTIONS = 'questions',
   IMAGES = 'images',
   VOTES = 'votes',
+  SEARCH = 'search',
   NONE = '',
 }
 

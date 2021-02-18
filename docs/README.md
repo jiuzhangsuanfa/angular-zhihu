@@ -479,6 +479,18 @@ export class ReadifyPipe implements PipeTransform {
 ng g m common/components/toolbar && ng g c common/components/toolbar
 ```
 
+### 3.5 搜索模块
+
+```shell
+ng g m search --routing
+```
+
+```shell
+ng g c search/home/search-home --flat
+# ng g c search/suggestion/search-suggestion --flat
+ng g c search/result/search-result --flat
+```
+
 ## 4 启用 Mock API Server
 
 ### 4.1 创建拦截器

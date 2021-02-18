@@ -18,8 +18,14 @@ const routes: Routes = [
     path: ResourceType.ANSWER,
     loadChildren: () => import('./answer/answer.module')
       .then(({ AnswerModule }) => AnswerModule),
-    data: { reuse: false },
+    data: { reuse: true },
   },
+  {
+    path: ResourceType.SEARCH,
+    loadChildren: () => import('./search/search.module')
+      .then(({ SearchModule }) => SearchModule),
+    data: { reuse: true },
+  }
 ];
 
 @NgModule({
