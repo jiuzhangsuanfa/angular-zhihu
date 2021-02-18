@@ -5,7 +5,7 @@
   <h3 class="title">搜索历史</h3>
   <ng-container *ngIf="list && list.length > 0; then historyList; else historyNone"></ng-container>
   <ng-template #historyList>
-    <li class="item" matRipple *ngFor="let item of list" (click)="value = item">
+    <li class="item" matRipple *ngFor="let item of list; trackBy: trackBy" (click)="value = item">
       <i class="icon ri-history-line"></i>
       <span class="text">{{ item }}</span>
       <span class="split"></span>

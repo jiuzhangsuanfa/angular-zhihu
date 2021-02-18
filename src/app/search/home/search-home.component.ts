@@ -1,36 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { STORAGE_KEY_SEARCH_HISTORY } from '../constants';
+import { HistoryService } from '../service/history.service';
 
 @Component({
   selector: 'app-search-home',
   templateUrl: './search-home.component.html',
   styleUrls: ['./search-home.component.scss']
 })
-export class SearchHomeComponent implements OnInit {
+export class SearchHomeComponent implements OnInit, OnDestroy {
 
   list?: string[];
   storage = localStorage;
   value: string = '';
 
+  private subscription: Subscription;
+
   constructor(
     private router: Router,
-  ) { }
+    private history: HistoryService,
+  ) {
+    this.subscription = history.subject.subscribe(list => this.list = list);
+  }
 
   ngOnInit() {
-    const origin = JSON.parse(this.storage.getItem(STORAGE_KEY_SEARCH_HISTORY) || '[]');
-    this.list = Array.from(new Set(origin));
+    this.history.load();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   search(keyword: string) {
-    this.delete(keyword);
-    this.list?.unshift(keyword);
-    this.storage.setItem(STORAGE_KEY_SEARCH_HISTORY, JSON.stringify(this.list || []));
+    this.history.insert(keyword);
     this.router.navigate(['search', keyword]);
   }
 
   delete(keyword: string) {
-    this.list = this.list?.filter(value => value !== keyword) || [];
+    this.history.delete(keyword);
+  }
+
+  trackBy(index: number, item: string) {
+    return item;
   }
 
 }
