@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { STORAGE_KEY_SEARCH_HISTORY } from '../constants';
 
 @Component({
   selector: 'app-search-home',
@@ -7,8 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchHomeComponent implements OnInit {
 
-  constructor() { }
+  list?: string[];
+  storage = localStorage;
+  value: string = '';
 
-  ngOnInit() { }
+  constructor(
+    private router: Router,
+  ) { }
+
+  ngOnInit() {
+    const origin = JSON.parse(this.storage.getItem(STORAGE_KEY_SEARCH_HISTORY) || '[]');
+    this.list = Array.from(new Set(origin));
+  }
+
+  search(keyword: string) {
+    this.delete(keyword);
+    this.list?.unshift(keyword);
+    this.storage.setItem(STORAGE_KEY_SEARCH_HISTORY, JSON.stringify(this.list || []));
+    this.router.navigate(['search', keyword]);
+  }
+
+  delete(keyword: string) {
+    this.list = this.list?.filter(value => value !== keyword) || [];
+  }
 
 }
