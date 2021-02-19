@@ -3,13 +3,9 @@
 ## 0 创建项目
 
 ```shell
-# Install the Angular CLI and @angular-eslint/schematics globally however you want (e.g. npm, yarn, volta etc)
-
-npm i -g @angular/cli @angular-devkit/{core,schematics} @angular-eslint/schematics
-
-# Create a new Angular CLI workspace using the @angular-eslint/schematics collection (instead of the default)
-
-ng new --collection=@angular-eslint/schematics --strict --style=scss --skip-git --routing
+npm i -g @angular/cli --unsafe-perm
+# eslint + scss, named zhihu
+ng new --collection=@angular-eslint/schematics --strict --style=scss --skip-git --routing zhihu
 ```
 
 > 修改已有项目为 ESLint

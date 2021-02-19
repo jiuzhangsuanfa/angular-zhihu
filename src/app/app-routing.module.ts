@@ -26,6 +26,12 @@ const routes: Routes = [
       .then(m => m.SearchModule),
     data: { reuse: true },
   },
+  {
+    path: ResourceType.user,
+    loadChildren: () => import('./user/user.module')
+      .then(m => m.UserModule),
+    data: { reuse: true },
+  },
 ];
 
 @NgModule({
