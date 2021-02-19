@@ -14,7 +14,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
   @Input() value = '';
   @Output() valueChange = new EventEmitter<string>();
-  @Output() after = new EventEmitter<boolean>();
+  @Output('after') afterEmitter = new EventEmitter<boolean>();
   @Input() placeholder = '在这里输入正文内容';
 
   @ViewChild('editor') editor!: ElementRef<HTMLDivElement>;
@@ -75,7 +75,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
         format: this.format.bind(this),
         error: this.error.bind(this),
       },
-      after: () => this.after.emit(true),
+      after: () => this.afterEmitter.emit(true),
     });
   }
 

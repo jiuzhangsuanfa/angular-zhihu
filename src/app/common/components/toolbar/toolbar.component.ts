@@ -12,7 +12,7 @@ export class ToolbarComponent implements OnInit {
   @Input() type: string = ToolbarType.custom;
   @Input() back = '..';
   @Input() disabled = false;
-  @Output() searchEmitter = new EventEmitter<string>();
+  @Output('search') searchEmitter = new EventEmitter<string>();
   @Output() valueEmitter = new EventEmitter<string>();
   @Input() value = '';
 

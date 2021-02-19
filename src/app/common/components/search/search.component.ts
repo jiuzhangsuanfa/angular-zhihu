@@ -9,12 +9,11 @@ import { throttleTime } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
-  @Input() disabled = false;
-
   @Input() value = '';
   @Output() valueChange = new EventEmitter<any>();
 
-  @Output() enter = new EventEmitter<any>();
+  @Input() disabled = false;
+  @Output('enter') enterEmitter = new EventEmitter<any>();
 
   @ViewChild('search') search!: ElementRef<HTMLInputElement>;
 
@@ -36,8 +35,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 
-  emitEnter() {
-    this.enter.next(this.value);
+  enter() {
+    this.enterEmitter.next(this.value);
   }
 
   emit(event: any) {

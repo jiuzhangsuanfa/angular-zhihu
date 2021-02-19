@@ -7,8 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class QuestionDetailSwitchComponent implements OnInit {
 
-  // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('value') emitter = new EventEmitter<'popular' | 'latest'>();
+  @Output('value') valueEmitter = new EventEmitter<'popular' | 'latest'>();
 
   value = true;
 
@@ -17,7 +16,7 @@ export class QuestionDetailSwitchComponent implements OnInit {
   ngOnInit() { }
 
   emit(value: boolean) {
-    this.emitter.emit(value ? 'popular' : 'latest');
+    this.valueEmitter.emit(value ? 'popular' : 'latest');
   }
 
 }
