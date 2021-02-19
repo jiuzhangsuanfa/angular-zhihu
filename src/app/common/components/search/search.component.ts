@@ -1,5 +1,4 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { MatInput } from '@angular/material/input';
 import { Subject, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 
@@ -10,12 +9,12 @@ import { throttleTime } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
-  @Input() disabled: boolean = false;
+  @Input() disabled = false;
 
-  @Input() value: string = '';
-  @Output() valueChange: EventEmitter<any> = new EventEmitter();
+  @Input() value = '';
+  @Output() valueChange = new EventEmitter<any>();
 
-  @Output('enter') enterEmitter: EventEmitter<any> = new EventEmitter();
+  @Output() enter = new EventEmitter<any>();
 
   @ViewChild('search') search!: ElementRef<HTMLInputElement>;
 
@@ -37,8 +36,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 
-  enter() {
-    this.enterEmitter.next(this.value);
+  emitEnter() {
+    this.enter.next(this.value);
   }
 
   emit(event: any) {

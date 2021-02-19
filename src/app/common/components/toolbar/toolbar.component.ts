@@ -9,12 +9,12 @@ import { ToolbarType } from '../../interfaces';
 })
 export class ToolbarComponent implements OnInit {
 
-  @Input('type') type: string = ToolbarType.CUSTOM;
-  @Input('back') back: string = '..';
-  @Input('disabled') disabled: boolean = false;
-  @Output('search') searchEmitter: EventEmitter<string> = new EventEmitter();
-  @Output('valueEmitter') valueEmitter: EventEmitter<string> = new EventEmitter();
-  @Input('value') value: string = '';
+  @Input() type: string = ToolbarType.custom;
+  @Input() back = '..';
+  @Input() disabled = false;
+  @Output() searchEmitter = new EventEmitter<string>();
+  @Output() valueEmitter = new EventEmitter<string>();
+  @Input() value = '';
 
   constructor(
     public router: Router,

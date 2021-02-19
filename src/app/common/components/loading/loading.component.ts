@@ -7,11 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class LoadingComponent implements OnInit {
 
-  @Input('background') background: string = 'white';
-  @Input('color') color: string = 'black';
-  @Input('full') full: boolean = false;
-  @Input('size') size: 'large' | 'medium' | 'small' | 'mini' = 'medium';
-  @Input('direction') direction: 'row' | 'column' = 'column';
+  @Input() background = 'white';
+  @Input() color = 'black';
+  @Input() full = false;
+  @Input() size: 'large' | 'medium' | 'small' | 'mini' = 'medium';
+  @Input() direction: 'row' | 'column' = 'column';
 
   width!: number;
   height!: number;

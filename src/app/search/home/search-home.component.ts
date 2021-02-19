@@ -12,7 +12,7 @@ export class SearchHomeComponent implements OnInit, OnDestroy {
 
   list?: string[];
   storage = localStorage;
-  value: string = '';
+  value = '';
 
   private subscription: Subscription;
 

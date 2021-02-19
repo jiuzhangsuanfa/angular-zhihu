@@ -1,4 +1,4 @@
-import { Answer, Question } from "src/app/common/interfaces";
+import { Answer, Question } from 'src/app/common/interfaces';
 
 export interface SearchResult {
 

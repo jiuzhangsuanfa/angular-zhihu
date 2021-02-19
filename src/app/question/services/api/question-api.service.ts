@@ -15,47 +15,47 @@ export class QuestionApiService {
   ) { }
 
   getQuestions(start: QuestionID = 0): Observable<Question[]> {
-    const url = join({ host, segments: [ResourceType.QUESTIONS] });
+    const url = join({ host, segments: [ResourceType.questions] });
     return this.http.get<Question[]>(url);
   }
 
   getQuestion(id: QuestionID): Observable<Question> {
-    const url = join({ host, segments: [ResourceType.QUESTIONS, id] });
+    const url = join({ host, segments: [ResourceType.questions, id] });
     return this.http.get<Question>(url);
   }
 
   publishQuestion(question: Partial<Question>): Observable<Question> {
-    const url = join({ host, segments: [ResourceType.QUESTIONS] });
+    const url = join({ host, segments: [ResourceType.questions] });
     return this.http.post<Question>(url, question);
   }
 
   approveQuestion(id: QuestionID): Observable<Question> {
     const params = { action: 'approve', question: id };
-    const url = join({ host, segments: [ResourceType.VOTES], params });
+    const url = join({ host, segments: [ResourceType.votes], params });
     return this.http.put<Question>(url, {});
   }
 
   cancelApproveQuestion(id: QuestionID): Observable<Question> {
     const params = { action: 'approve', question: id };
-    const url = join({ host, segments: [ResourceType.VOTES], params });
+    const url = join({ host, segments: [ResourceType.votes], params });
     return this.http.delete<Question>(url);
   }
 
   opposeQuestion(id: QuestionID): Observable<Question> {
     const params = { action: 'oppose', question: id };
-    const url = join({ host, segments: [ResourceType.VOTES], params });
+    const url = join({ host, segments: [ResourceType.votes], params });
     return this.http.put<Question>(url, {});
   }
 
   cancelOpposeQuestion(id: QuestionID): Observable<Question> {
     const params = { action: 'oppose', question: id };
-    const url = join({ host, segments: [ResourceType.VOTES], params });
+    const url = join({ host, segments: [ResourceType.votes], params });
     return this.http.delete<Question>(url);
   }
 
   getAnswersOfQuestion(question: QuestionID, next: QuestionID = 0): Observable<Answer[]> {
     const params = { question, next };
-    const url = join({ host, segments: [ResourceType.ANSWERS], params });
+    const url = join({ host, segments: [ResourceType.answers], params });
     return this.http.get<Answer[]>(url);
   }
 

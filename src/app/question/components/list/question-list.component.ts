@@ -28,7 +28,7 @@ export class QuestionListComponent implements OnInit {
 
   loadMore() {
     const { resource, id } = new Link(location.href);
-    if (this.status.loading || resource !== ResourceType.QUESTION || id !== undefined || this.questions === undefined) {
+    if (this.status.loading || resource !== ResourceType.question || id !== undefined || this.questions === undefined) {
       return;
     }
     this.status.loading = true;

@@ -17,14 +17,14 @@ export class AnswerDetailComponent implements OnInit {
   answer?: Answer;
   question?: Question;
 
-  back: string = '/question';
+  back = '/question';
 
   constructor(
     private api: AnswerApiService,
     private route: ActivatedRoute,
     private questionApi: QuestionApiService,
   ) {
-    this.id = +route.snapshot.paramMap.get('id')!;
+    this.id = +(route.snapshot.paramMap.get('id') || 0);
   }
 
   ngOnInit() {
@@ -40,26 +40,26 @@ export class AnswerDetailComponent implements OnInit {
   }
 
   approve() {
-    if (this.answer?.status === AnswerStatus.APPROVE) {
+    if (this.answer?.status === AnswerStatus.approve) {
       // this.api.approveAnswer(this.id)
       //   .subscribe(answer => this.answer = answer);
-      this.answer!.status = AnswerStatus.NONE;
-    } else {
+      this.answer.status = AnswerStatus.none;
+    } else if (this.answer?.status === AnswerStatus.oppose || this.answer?.status === AnswerStatus.none) {
       // this.api.cancelApproveAnswer(this.id)
       //   .subscribe(answer => this.answer = answer);
-      this.answer!.status = AnswerStatus.APPROVE;
+      this.answer.status = AnswerStatus.approve;
     }
   }
 
   oppose() {
-    if (this.answer?.status === AnswerStatus.OPPOSE) {
+    if (this.answer?.status === AnswerStatus.oppose) {
       // this.api.opposeAnswer(this.id)
       //   .subscribe(answer => this.answer = answer);
-      this.answer!.status = AnswerStatus.NONE;
-    } else {
+      this.answer.status = AnswerStatus.none;
+    } else if (this.answer?.status === AnswerStatus.approve || this.answer?.status === AnswerStatus.none) {
       // this.api.cancelOpposeAnswer(this.id)
       //   .subscribe(answer => this.answer = answer);
-      this.answer!.status = AnswerStatus.OPPOSE;
+      this.answer.status = AnswerStatus.oppose;
     }
   }
 

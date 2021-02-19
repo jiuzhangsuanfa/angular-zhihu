@@ -1,9 +1,10 @@
 import { User } from './user';
 
+// eslint-disable-next-line no-shadow
 export enum AnswerStatus {
-  APPROVE = 'approve',
-  OPPOSE = 'oppose',
-  NONE = 'none',
+  approve = 'approve',
+  oppose = 'oppose',
+  none = 'none',
 }
 
 export interface Answer {
@@ -17,7 +18,7 @@ export interface Answer {
     approve: number;
     oppose: number;
     comment: number;
-  }
+  };
   date: Date;
   status: AnswerStatus;
 

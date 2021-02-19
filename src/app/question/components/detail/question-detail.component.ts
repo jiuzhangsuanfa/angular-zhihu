@@ -25,7 +25,7 @@ export class QuestionDetailComponent implements OnInit {
     private api: QuestionApiService,
     private route: ActivatedRoute,
   ) {
-    this.id = +route.snapshot.paramMap.get('id')!;
+    this.id = +(route.snapshot.paramMap.get('id') || 0);
   }
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class QuestionDetailComponent implements OnInit {
 
   loadMore() {
     const { resource, id } = new Link(location.href);
-    if (this.status.loading || resource !== ResourceType.QUESTION || id === undefined || this.answers === undefined) {
+    if (this.status.loading || resource !== ResourceType.question || id === undefined || this.answers === undefined) {
       return;
     }
     this.status.loading = true;

@@ -1,24 +1,26 @@
+/* eslint-disable no-shadow */
+
 export enum ResourceType {
-  ANSWER = 'answer',
-  ANSWERS = 'answers',
-  QUESTION = 'question',
-  QUESTIONS = 'questions',
-  IMAGES = 'images',
-  VOTES = 'votes',
-  SEARCH = 'search',
-  NONE = '',
+  answer = 'answer',
+  answers = 'answers',
+  question = 'question',
+  questions = 'questions',
+  images = 'images',
+  votes = 'votes',
+  search = 'search',
+  none = '',
 }
 
 export enum LoadingType {
-  INIT = 'init',
-  LOADING = 'loading',
-  SUCCEED = 'succeed',
-  FAILED = 'failed',
-  CANCEL = 'cancel',
+  init = 'init',
+  loading = 'loading',
+  succeed = 'succeed',
+  failed = 'failed',
+  cancel = 'cancel',
 }
 
 export enum ToolbarType {
-  CUSTOM = 'custom',
-  SEARCH = 'search',
-  ACTION = 'action',
+  custom = 'custom',
+  search = 'search',
+  action = 'action',
 }

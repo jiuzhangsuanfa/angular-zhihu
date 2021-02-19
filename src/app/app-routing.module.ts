@@ -6,24 +6,24 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: ResourceType.QUESTION,
+    redirectTo: ResourceType.question,
   },
   {
-    path: ResourceType.QUESTION,
+    path: ResourceType.question,
     loadChildren: () => import('./question/question.module')
-      .then(({ QuestionModule }) => QuestionModule),
+      .then(m => m.QuestionModule),
     data: { reuse: true },
   },
   {
-    path: ResourceType.ANSWER,
+    path: ResourceType.answer,
     loadChildren: () => import('./answer/answer.module')
-      .then(({ AnswerModule }) => AnswerModule),
+      .then(m => m.AnswerModule),
     data: { reuse: true },
   },
   {
-    path: ResourceType.SEARCH,
+    path: ResourceType.search,
     loadChildren: () => import('./search/search.module')
-      .then(({ SearchModule }) => SearchModule),
+      .then(m => m.SearchModule),
     data: { reuse: true },
   }
 ];

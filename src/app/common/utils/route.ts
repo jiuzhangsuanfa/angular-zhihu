@@ -1,11 +1,9 @@
 import { ActivatedRouteSnapshot } from '@angular/router';
 
-export const getPath: (route: ActivatedRouteSnapshot) => string = route => {
-  return route
+export const getPath: (route: ActivatedRouteSnapshot) => string = route => route
     .pathFromRoot
     .map(segment => segment.url.toString())
-    .join('/')
-};
+    .join('/');
 
 const getPaths: (route: ActivatedRouteSnapshot) => string[] = route => {
   const paths: string[] = [];
@@ -15,10 +13,6 @@ const getPaths: (route: ActivatedRouteSnapshot) => string[] = route => {
   ];
 };
 
-const concat: (segments: string[]) => string = segments => {
-  return segments.filter(segment => !!segment).join('/');
-}
+const concat: (segments: string[]) => string = segments => segments.filter(segment => !!segment).join('/');
 
-export const getRouteKey: (route: ActivatedRouteSnapshot) => string = route => {
-  return concat(getPaths(route.root));
-};
+export const getRouteKey: (route: ActivatedRouteSnapshot) => string = route => concat(getPaths(route.root));

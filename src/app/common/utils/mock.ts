@@ -6,12 +6,12 @@ export const mockVote: (request: HttpRequest<any>) => any = request => {
   const answerID = request.params.get('answer');
   const questionID = request.params.get('question');
   const action = request.params.get('action') as AnswerStatus;
-  return answerID ? mockAnswer(+answerID) : mockQuestion(+questionID!);
+  return answerID ? mockAnswer(+answerID) : mockQuestion(+(questionID || 0));
 };
 
 const questionStatusList = [
-  QuestionStatus.LIKE,
-  QuestionStatus.NONE,
+  QuestionStatus.like,
+  QuestionStatus.none,
 ];
 
 export const mockQuestion: (id?: QuestionID) => Question = id => ({
@@ -27,15 +27,15 @@ export const mockQuestion: (id?: QuestionID) => Question = id => ({
   },
   tags: mock({
     'array|1-4': [() => Random.cword(2, 5)],
-  })['array'],
+  }).array,
   date: new Date(Random.datetime()),
   status: questionStatusList[Math.random() * questionStatusList.length << 0],
 });
 
 const answerStatusList = [
-  AnswerStatus.APPROVE,
-  AnswerStatus.OPPOSE,
-  AnswerStatus.NONE,
+  AnswerStatus.approve,
+  AnswerStatus.oppose,
+  AnswerStatus.none,
 ];
 
 export const mockAnswer: (id?: AnswerID, question?: QuestionID) => Answer = (id, question) => ({
@@ -44,7 +44,7 @@ export const mockAnswer: (id?: AnswerID, question?: QuestionID) => Answer = (id,
   user: mockUser(),
   covers: mock({
     'array|0-10': [Random.image()],
-  })['array'],
+  }).array,
   content: Random.cparagraph(0, 1000),
   count: {
     approve: Random.integer(0, 999999),

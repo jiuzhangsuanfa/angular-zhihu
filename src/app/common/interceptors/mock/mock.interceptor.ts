@@ -19,13 +19,13 @@ export class MockInterceptor implements HttpInterceptor {
     votes: (_: any, request: HttpRequest<any>) => mockVote(request),
     questions: (id?: QuestionID) => id
       ? mockQuestion(id)
-      : mock({ 'array|10': [() => mockQuestion()] })['array'],
+      : mock({ 'array|10': [() => mockQuestion()] }).array,
     answers: (id?: AnswerID, link?: Link) => id
-      ? mockAnswer(id, +link?.getParam('question')! || undefined)
-      : mock({ 'array|10': [() => mockAnswer(undefined, +link?.getParam('question')! || undefined)] })['array'],
+      ? mockAnswer(id, +(link?.getParam('question') || 0) || undefined)
+      : mock({ 'array|10': [() => mockAnswer(undefined, +(link?.getParam('question') || 0) || undefined)] }).array,
     users: (id?: UserID) => id
       ? mockUser(id)
-      : mock({ 'array|10': [() => mockUser()] })['array'],
+      : mock({ 'array|10': [() => mockUser()] }).array,
   };
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -46,7 +46,7 @@ export class MockInterceptor implements HttpInterceptor {
   }
 
   adapt(request: HttpRequest<any>, { id, resource, params }: Link): any | undefined {
-    if (resource === ResourceType.QUESTIONS && request.method === 'POST') {
+    if (resource === ResourceType.questions && request.method === 'POST') {
       const question: Question = {
         ...mockQuestion(),
         title: request.body.title,
@@ -59,7 +59,7 @@ export class MockInterceptor implements HttpInterceptor {
         },
       };
       return question;
-    } else if (resource === ResourceType.ANSWERS && request.method === 'POST') {
+    } else if (resource === ResourceType.answers && request.method === 'POST') {
       const answer: Answer = {
         ...mockAnswer(),
         question: request.body.question,
@@ -69,7 +69,7 @@ export class MockInterceptor implements HttpInterceptor {
           oppose: 0,
           comment: 0,
         },
-        status: AnswerStatus.NONE,
+        status: AnswerStatus.none,
       };
       return answer;
     }

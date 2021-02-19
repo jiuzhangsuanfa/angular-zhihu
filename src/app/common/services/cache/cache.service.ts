@@ -8,11 +8,11 @@ export class CacheService {
 
   private cache: {
     [index: string]: {
-      [index: number]: Question | Answer
-    }
+      [index: number]: Question | Answer;
+    };
   } = {
-      [ResourceType.ANSWERS]: {},
-      [ResourceType.QUESTIONS]: {},
+      [ResourceType.answers]: {},
+      [ResourceType.questions]: {},
     };
 
   constructor() { }

@@ -14,11 +14,11 @@ import { QuestionApiService } from '../../services/api/question-api.service';
 export class QuestionPublishComponent implements OnInit {
 
   status = {
-    publishing: LoadingType.INIT,
+    publishing: LoadingType.init,
   };
 
-  title: string = '';
-  content: string = '';
+  title = '';
+  content = '';
 
   constructor(
     private api: QuestionApiService,
@@ -34,10 +34,10 @@ export class QuestionPublishComponent implements OnInit {
   }
 
   publish() {
-    if (this.status.publishing !== LoadingType.INIT) {
+    if (this.status.publishing !== LoadingType.init) {
       return;
     }
-    this.status.publishing = LoadingType.LOADING;
+    this.status.publishing = LoadingType.loading;
     this.api.publishQuestion({
       tags: [],
       title: this.title.trim(),
@@ -45,17 +45,17 @@ export class QuestionPublishComponent implements OnInit {
     }).pipe(
       catchError(async error => {
         this.bar.open('问题发布失败，请稍后重试', '', { duration: 3000 });
-        this.status.publishing = LoadingType.FAILED;
+        this.status.publishing = LoadingType.failed;
         await sleep(3000);
-        this.status.publishing = LoadingType.INIT;
+        this.status.publishing = LoadingType.init;
         throw error;
       }),
     ).subscribe(async ({ id }) => {
-      this.status.publishing = LoadingType.SUCCEED;
+      this.status.publishing = LoadingType.succeed;
       this.bar.open('问题发布成功，正在跳转...', '', { duration: 1500 });
       await sleep(1500);
       this.bar.dismiss();
-      this.router.navigate([ResourceType.QUESTION, id]);
+      this.router.navigate([ResourceType.question, id]);
     });
   }
 

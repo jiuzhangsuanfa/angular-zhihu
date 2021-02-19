@@ -1,8 +1,9 @@
 import { User } from './user';
 
+// eslint-disable-next-line no-shadow
 export enum QuestionStatus {
-  LIKE = 'like',
-  NONE = 'none',
+  like = 'like',
+  none = 'none',
 }
 
 export interface Question {

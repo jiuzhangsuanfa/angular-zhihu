@@ -12,12 +12,10 @@ import Vditor from 'vditor';
 })
 export class EditorComponent implements OnInit, AfterViewInit {
 
-  @Input() value: string = '';
-  @Output() valueChange: EventEmitter<string> = new EventEmitter();
-
-  @Output('after') afterEmitter: EventEmitter<boolean> = new EventEmitter();
-
-  @Input('placeholder') placeholder = '在这里输入正文内容';
+  @Input() value = '';
+  @Output() valueChange = new EventEmitter<string>();
+  @Output() after = new EventEmitter<boolean>();
+  @Input() placeholder = '在这里输入正文内容';
 
   @ViewChild('editor') editor!: ElementRef<HTMLDivElement>;
 
@@ -73,11 +71,11 @@ export class EditorComponent implements OnInit, AfterViewInit {
         extend: [],
       },
       upload: {
-        url: join({ host, segments: [ResourceType.IMAGES] }),
+        url: join({ host, segments: [ResourceType.images] }),
         format: this.format.bind(this),
         error: this.error.bind(this),
       },
-      after: () => this.afterEmitter.emit(true),
+      after: () => this.after.emit(true),
     });
   }
 

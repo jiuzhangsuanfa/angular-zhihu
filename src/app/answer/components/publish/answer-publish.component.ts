@@ -15,11 +15,11 @@ import { AnswerApiService } from '../../services/api/answer-api.service';
 export class AnswerPublishComponent implements OnInit {
 
   status = {
-    publishing: LoadingType.INIT,
+    publishing: LoadingType.init,
   };
 
-  content: string = '';
-  title: string = '正在加载问题标题...';
+  content = '';
+  title = '正在加载问题标题...';
   id: QuestionID;
 
   constructor(
@@ -38,27 +38,27 @@ export class AnswerPublishComponent implements OnInit {
   }
 
   publish() {
-    if (this.status.publishing !== LoadingType.INIT) {
+    if (this.status.publishing !== LoadingType.init) {
       return;
     }
-    this.status.publishing = LoadingType.LOADING;
+    this.status.publishing = LoadingType.loading;
     this.api.publishAnswer({
       question: this.id,
       content: this.content.trim(),
     }).pipe(
       catchError(async error => {
         this.bar.open('回答添加失败，请稍后重试', '', { duration: 3000 });
-        this.status.publishing = LoadingType.FAILED;
+        this.status.publishing = LoadingType.failed;
         await sleep(3000);
-        this.status.publishing = LoadingType.INIT;
+        this.status.publishing = LoadingType.init;
         throw error;
       }),
     ).subscribe(async ({ id }) => {
-      this.status.publishing = LoadingType.SUCCEED;
+      this.status.publishing = LoadingType.succeed;
       this.bar.open('回答添加成功，正在跳转...', '', { duration: 1500 });
       await sleep(1500);
       this.bar.dismiss();
-      this.router.navigate([ResourceType.ANSWER, id]);
+      this.router.navigate([ResourceType.answer, id]);
     });
   }
 
