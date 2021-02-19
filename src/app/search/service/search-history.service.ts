@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { STORAGE_KEY_SEARCH_HISTORY } from '../constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SearchHistoryService {
 

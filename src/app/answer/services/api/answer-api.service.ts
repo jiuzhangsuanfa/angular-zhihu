@@ -6,7 +6,7 @@ import { Answer, AnswerID, ResourceType } from 'src/app/common/interfaces';
 import { join } from 'src/app/common/utils';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AnswerApiService {
 

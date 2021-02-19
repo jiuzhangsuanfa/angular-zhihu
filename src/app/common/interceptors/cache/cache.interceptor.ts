@@ -4,7 +4,7 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-  HttpResponse
+  HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -38,7 +38,7 @@ export class CacheInterceptor implements HttpInterceptor {
           tap(
             ({ body }: HttpResponse<any | any[]>) => Array.isArray(body)
               ? body.forEach(value => this.cache.set(resource, value))
-              : this.cache.set(resource, body)
+              : this.cache.set(resource, body),
           ),
         );
     }

@@ -6,7 +6,7 @@ import { Answer, Question, QuestionID, ResourceType } from 'src/app/common/inter
 import { join } from 'src/app/common/utils';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuestionApiService {
 

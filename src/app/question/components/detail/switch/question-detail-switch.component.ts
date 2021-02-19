@@ -3,7 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-question-detail-switch',
   templateUrl: './question-detail-switch.component.html',
-  styleUrls: ['./question-detail-switch.component.scss']
+  styleUrls: ['./question-detail-switch.component.scss'],
 })
 export class QuestionDetailSwitchComponent implements OnInit {
 

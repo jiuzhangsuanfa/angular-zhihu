@@ -4,7 +4,7 @@ import { Question } from 'src/app/common/interfaces';
 @Component({
   selector: 'app-question-card',
   templateUrl: './question-card.component.html',
-  styleUrls: ['./question-card.component.scss']
+  styleUrls: ['./question-card.component.scss'],
 })
 export class QuestionCardComponent implements OnInit {
 

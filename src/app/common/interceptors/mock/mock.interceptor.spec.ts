@@ -5,8 +5,8 @@ import { MockInterceptor } from './mock.interceptor';
 describe('MockInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      MockInterceptor
-      ]
+      MockInterceptor,
+      ],
   }));
 
   it('should be created', () => {

@@ -9,7 +9,7 @@ import { AnswerApiService } from '../../services/api/answer-api.service';
 @Component({
   selector: 'app-answer-detail',
   templateUrl: './answer-detail.component.html',
-  styleUrls: ['./answer-detail.component.scss']
+  styleUrls: ['./answer-detail.component.scss'],
 })
 export class AnswerDetailComponent implements OnInit {
 

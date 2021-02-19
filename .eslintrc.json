@@ -38,7 +38,11 @@
           }
         ],
         "@angular-eslint/no-output-rename": "off",
-        "no-bitwise": "off"
+        "no-bitwise": "off",
+        "comma-dangle": [
+          "error",
+          "always-multiline"
+        ]
       }
     },
     {

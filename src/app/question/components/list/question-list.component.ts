@@ -7,7 +7,7 @@ import { QuestionApiService } from '../../services/api/question-api.service';
 @Component({
   selector: 'app-question-list',
   templateUrl: './question-list.component.html',
-  styleUrls: ['./question-list.component.scss']
+  styleUrls: ['./question-list.component.scss'],
 })
 export class QuestionListComponent implements OnInit {
 

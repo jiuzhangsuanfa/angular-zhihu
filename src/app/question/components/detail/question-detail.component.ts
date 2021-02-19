@@ -8,7 +8,7 @@ import { QuestionApiService } from '../../services/api/question-api.service';
 @Component({
   selector: 'app-question-detail',
   templateUrl: './question-detail.component.html',
-  styleUrls: ['./question-detail.component.scss']
+  styleUrls: ['./question-detail.component.scss'],
 })
 export class QuestionDetailComponent implements OnInit {
 
@@ -31,7 +31,7 @@ export class QuestionDetailComponent implements OnInit {
   ngOnInit() {
     this.api.getQuestion(this.id)
       .subscribe(
-        async question => this.question = { ...question, content: await transform(question.content) }
+        async question => this.question = { ...question, content: await transform(question.content) },
       );
     this.fetchAnswers(this.fetchType);
   }

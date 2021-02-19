@@ -8,7 +8,7 @@ describe('QuestionDetailSwitchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [QuestionDetailSwitchComponent]
+      declarations: [QuestionDetailSwitchComponent],
     }).compileComponents();
   });
 

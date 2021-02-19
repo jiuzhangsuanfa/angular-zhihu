@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Answer, AnswerID, Question, QuestionID, ResourceType } from '../../interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CacheService {
 

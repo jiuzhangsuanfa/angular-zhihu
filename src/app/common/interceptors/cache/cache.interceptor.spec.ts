@@ -5,8 +5,8 @@ import { CacheInterceptor } from './cache.interceptor';
 describe('CacheInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      CacheInterceptor
-      ]
+      CacheInterceptor,
+      ],
   }));
 
   it('should be created', () => {

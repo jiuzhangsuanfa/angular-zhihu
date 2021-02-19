@@ -15,6 +15,6 @@ import { SearchRoutingModule } from './search-routing.module';
     MaterialModule,
     ToolbarModule,
     LoadingModule,
-  ]
+  ],
 })
 export class SearchModule { }
