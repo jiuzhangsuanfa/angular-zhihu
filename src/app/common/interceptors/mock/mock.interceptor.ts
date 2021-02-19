@@ -9,23 +9,25 @@ import { Injectable, isDevMode } from '@angular/core';
 import { mock } from 'mockjs';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { SearchResult } from 'src/app/search/interfaces';
 import { Answer, AnswerID, AnswerStatus, Question, QuestionID, ResourceType, UserID } from '../../interfaces';
-import { Link, mockAnswer, mockQuestion, mockUser, mockVote } from '../../utils';
+import { Link, mockAnswer, mockQuestion, mockSearch, mockUser, mockVote } from '../../utils';
 
 @Injectable()
 export class MockInterceptor implements HttpInterceptor {
 
   private data: any = {
-    votes: (_: any, request: HttpRequest<any>) => mockVote(request),
-    questions: (id?: QuestionID) => id
+    [ResourceType.votes]: (_: any, request: HttpRequest<any>) => mockVote(request),
+    [ResourceType.questions]: (id?: QuestionID) => id
       ? mockQuestion(id)
       : mock({ 'array|10': [() => mockQuestion()] }).array,
-    answers: (id?: AnswerID, link?: Link) => id
+    [ResourceType.answers]: (id?: AnswerID, link?: Link) => id
       ? mockAnswer(id, +(link?.getParam('question') || 0) || undefined)
       : mock({ 'array|10': [() => mockAnswer(undefined, +(link?.getParam('question') || 0) || undefined)] }).array,
     users: (id?: UserID) => id
       ? mockUser(id)
       : mock({ 'array|10': [() => mockUser()] }).array,
+    [ResourceType.search]: () => mock({ 'array|10': [() => mockSearch()] }).array,
   };
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

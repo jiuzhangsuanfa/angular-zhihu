@@ -1,6 +1,13 @@
 import { HttpRequest } from '@angular/common/http';
 import { mock, Random } from 'mockjs';
+import { SearchResult } from 'src/app/search/interfaces';
 import { Answer, AnswerID, AnswerStatus, Question, QuestionID, QuestionStatus, User, UserID } from '../interfaces';
+
+export const mockTag: () => string = () => Random.cword(2, 5);
+
+export const mockTags: () => string = () => mock({
+  'array|1-5': [mockTag],
+}).array;
 
 export const mockVote: (request: HttpRequest<any>) => any = request => {
   const answerID = request.params.get('answer');
@@ -60,4 +67,11 @@ export const mockUser: (id?: UserID) => User = id => ({
   name: Random.cname(),
   head: Random.image('128x128'),
   motto: Random.csentence(),
+});
+
+export const mockSearch: () => SearchResult = () => ({
+  id: Random.increment(),
+  keyword: '',
+  question: mockQuestion(),
+  answer: mockAnswer(),
 });

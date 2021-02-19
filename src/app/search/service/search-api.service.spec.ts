@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-
 import { SearchApiService } from './search-api.service';
 
 describe('SearchApiService', () => {
+
   let service: SearchApiService;
 
   beforeEach(() => {
@@ -13,4 +13,5 @@ describe('SearchApiService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 });

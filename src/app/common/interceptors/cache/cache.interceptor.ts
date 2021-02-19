@@ -9,6 +9,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
+import { ResourceType } from '../../interfaces';
 import { CacheService } from '../../services/cache/cache.service';
 import { Link } from '../../utils';
 
@@ -19,18 +20,22 @@ export class CacheInterceptor implements HttpInterceptor {
     private cache: CacheService,
   ) { }
 
+  shouldCache(resource: ResourceType) {
+    return resource === ResourceType.answers || resource === ResourceType.questions;
+  }
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const link = new Link(request.urlWithParams);
     const { resource, id } = link;
 
-    if (resource && id && this.cache.has(resource, id)) {
+    if (this.shouldCache(resource) && id && this.cache.has(resource, id)) {
       return of(
         new HttpResponse({ body: this.cache.get(resource, id) }),
       );
     }
 
-    if (resource) {
+    if (this.shouldCache(resource)) {
       return next
         .handle(request)
         .pipe(
