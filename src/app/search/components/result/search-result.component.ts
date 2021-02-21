@@ -4,8 +4,8 @@ import { finalize } from 'rxjs/operators';
 import { ResourceType } from 'src/app/common/interfaces';
 import { Link, mockTags } from 'src/app/common/utils';
 import { SearchResult } from '../../interfaces';
-import { SearchApiService } from '../../service/search-api.service';
-import { SearchHistoryService } from '../../service/search-history.service';
+import { SearchApiService } from '../../services/search-api.service';
+import { SearchHistoryService } from '../../services/search-history.service';
 
 @Component({
   selector: 'app-search-result',

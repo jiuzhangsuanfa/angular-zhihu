@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SearchHistoryService } from '../../service/search-history.service';
+import { SearchHistoryService } from '../../services/search-history.service';
 
 @Component({
   selector: 'app-search-home',
