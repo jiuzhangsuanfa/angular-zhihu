@@ -8,7 +8,7 @@ export class Link {
     try {
       this.link = new URL(url);
     } catch (error) {
-      this.link = new URL(location.host + url);
+      this.link = new URL(location.origin + url);
     }
   }
 
