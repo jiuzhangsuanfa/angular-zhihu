@@ -490,6 +490,12 @@ export class ReadifyPipe implements PipeTransform {
 
 #### 3.4.4 Toolbar 顶部导航工具栏
 
+#### 3.4.5 导航服务
+
+```shell
+ng g s common/services/navigation/navigation
+```
+
 ```shell
 ng g m common/components/toolbar && ng g c common/components/toolbar
 ```
