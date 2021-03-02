@@ -286,7 +286,17 @@ POST api/answers?question=<number>
 ng g m user --routing
 ```
 
+#### Keycloak
+
+```shell
+npm install -S keycloak-angular keycloak-js
+```
+
 #### 3.3.1 用户详情
+
+```shell
+ng g c user/components/detail/user-detail --flat
+```
 
 ```http
 GET api/users/:id
