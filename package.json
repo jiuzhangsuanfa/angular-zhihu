@@ -4,7 +4,7 @@
   "scripts": {
     "start": "ng serve",
     "start:mock": "ng serve --host 0.0.0.0 --port 4200 --disable-host-check",
-    "start:prod": "ng serve --host 0.0.0.0 --port 4200 --disable-host-check --prod",
+    "start:prod": "ng serve --host 0.0.0.0 --port 4200 --disable-host-check --prod --source-map",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

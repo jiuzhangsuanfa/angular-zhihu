@@ -9,7 +9,6 @@ import { Injectable, isDevMode } from '@angular/core';
 import { mock } from 'mockjs';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { SearchResult } from 'src/app/search/interfaces';
 import { Answer, AnswerID, AnswerStatus, Question, QuestionID, ResourceType, UserID } from '../../interfaces';
 import { Link, mockAnswer, mockQuestion, mockSearch, mockUser, mockVote } from '../../utils';
 
