@@ -41,8 +41,12 @@ export class QuestionApiService {
   }
 
   getQuestion(id: QuestionID): Observable<Question> {
-    const url = join({ host, segments: [ResourceType.questions, id] });
-    return this.http.get<Question>(url);
+    const params = { questionId: id, next: 0 };
+    const url = join({ host, segments: [ResourceType.answers], params });
+    return this.http.get<Question>(url)
+      .pipe(
+        tap(console.log),
+      );
   }
 
   publishQuestion(question: Partial<Question>): Observable<Question> {
