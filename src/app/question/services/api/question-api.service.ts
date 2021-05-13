@@ -46,12 +46,17 @@ export class QuestionApiService {
     return this.http.get<Question>(url)
       .pipe(
         tap(console.log),
+        map(value => value.data.records),
+        tap(console.log),
       );
   }
 
   publishQuestion(question: Partial<Question>): Observable<Question> {
     const url = join({ host, segments: [ResourceType.questions] });
-    return this.http.post<Question>(url, question);
+    return this.http.post<Question>(url, question)
+      .pipe(
+        tap(console.log),
+      );
   }
 
   approveQuestion(id: QuestionID): Observable<Question> {

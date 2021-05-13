@@ -32,7 +32,7 @@ export class QuestionListComponent implements OnInit {
       return;
     }
     this.status.loading = true;
-    this.api.getQuestions(this.questions.length > 0 && this.questions[this.questions.length - 1].id || undefined)
+    this.api.getQuestions(this.questions.length > 10 && this.questions[this.questions.length - 1].id || undefined)
       .pipe(finalize(() => this.status.loading = false))
       .subscribe(questions => this.questions ? this.questions.push(...questions) : this.questions = questions);
   }

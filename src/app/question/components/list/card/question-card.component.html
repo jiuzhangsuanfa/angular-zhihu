@@ -6,7 +6,7 @@
       <!-- <img src="{{ question.user.head }}" alt="头像" class="head">
       <span class="name">{{ question.user.name }}</span>
       <span class="motto">{{ question.user.motto }}</span> -->
-      <span class="userid">问题id：{{question.user.id}}</span>
+      <span class="id">问题id：{{question.id}}</span>
     </div>
     <div class="content">
       <p class="text">{{ content }}</p>
@@ -18,6 +18,7 @@
       <!-- <span>{{ question.count.visit | readify }}浏览</span> -->
       <span>{{ question.count.answer | readify }}回答</span>
       <!-- <span>{{ question.count.like | readify }}喜欢</span> -->
+      <span>{{question.date}}</span>
     </div>
   </div>
 
