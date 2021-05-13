@@ -41,12 +41,26 @@ export class QuestionApiService {
   }
 
   getQuestion(id: QuestionID): Observable<Question> {
-    const params = { questionId: id, next: 0 };
-    const url = join({ host, segments: [ResourceType.answers], params });
+    const url = join({ host, segments: [ResourceType.questions, id] });
     return this.http.get<Question>(url)
       .pipe(
         tap(console.log),
         map(value => value.data.records),
+        map(
+          questions => questions.map((question: any) => ({
+            id: question.id,
+            title: question.title,
+            content: question.content,
+            user: {
+              id: question.userId,
+            },
+            count: {
+              answer: question.answerCount,
+            },
+            tags: [],
+            date: question.gmtCreate,
+          })),
+        ),
         tap(console.log),
       );
   }
@@ -83,10 +97,24 @@ export class QuestionApiService {
     return this.http.delete<Question>(url);
   }
 
-  getAnswersOfQuestion(question: QuestionID, next: QuestionID = 0): Observable<Answer[]> {
-    const params = { question, next };
+  getAnswersOfQuestion(questionId: QuestionID, next: QuestionID = 0): Observable<Answer[]> {
+    const params = { questionId, next };
     const url = join({ host, segments: [ResourceType.answers], params });
-    return this.http.get<Answer[]>(url);
+    return this.http.get<Answer[]>(url)
+      .pipe(
+        tap(console.log),
+        map(value => value.data.records),
+        map(
+          answers => answers.map((answer: any) => ({
+            id: answer.id,
+            content: answer.content,
+            user: {
+              id: answer.userId,
+            },
+          })),
+        ),
+        //tap(console.log),
+      );
   }
 
 }

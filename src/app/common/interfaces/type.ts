@@ -11,6 +11,7 @@ export enum ResourceType {
   user = 'user',
   users = 'users',
   none = '',
+  questionId = 'questionId',
 }
 
 export enum LoadingType {
