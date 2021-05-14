@@ -9,7 +9,7 @@ export enum AnswerStatus {
 
 export interface Answer {
 
-  id: number;
+  id: any;
   question: number;
   covers?: string[];
   user: User;

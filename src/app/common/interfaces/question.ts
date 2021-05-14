@@ -9,7 +9,7 @@ export enum QuestionStatus {
 export interface Question {
 
   /** 问题 ID */
-  id: number;
+  id: any;
 
   /** 问题标题 */
   title: string;

@@ -1,6 +1,6 @@
 export interface Vote {
 
-  id: number;
+  id: any;
   count: number;
 
 }

@@ -1,6 +1,6 @@
 export interface User {
 
-  id: number;
+  id: any;
   name: string;
   head: string;
   motto: string;

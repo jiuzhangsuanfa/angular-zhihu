@@ -49,7 +49,6 @@ export class QuestionApiService {
         map(
           questions => questions.map((question: any) => ({
             id: question.id,
-            title: question.title,
             content: question.content,
             user: {
               id: question.userId,
