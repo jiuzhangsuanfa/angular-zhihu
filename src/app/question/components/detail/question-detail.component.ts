@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { finalize, map } from 'rxjs/operators';
 import { Answer, Question, QuestionID, ResourceType } from 'src/app/common/interfaces';
@@ -16,7 +16,6 @@ export class QuestionDetailComponent implements OnInit {
   answers?: Answer[];
   id: QuestionID;
   fetchType: 'popular' | 'latest' = 'popular';
-
   status = {
     loading: false,
   };

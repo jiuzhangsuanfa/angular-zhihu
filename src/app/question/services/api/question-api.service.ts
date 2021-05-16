@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
@@ -45,20 +46,20 @@ export class QuestionApiService {
     return this.http.get<Question>(url)
       .pipe(
         tap(console.log),
-        map(value => value.data.records),
-        map(
-          questions => questions.map((question: any) => ({
-            id: question.id,
-            content: question.content,
-            user: {
-              id: question.userId,
-            },
-            count: {
-              answer: question.answerCount,
-            },
-            tags: [],
-            date: question.gmtCreate,
-          })),
+        map(value => value.data),
+        map((question: any) => ({
+          id: question.id,
+          title: question.title,
+          content: question.content,
+          user: {
+            id: question.userId,
+          },
+          count: {
+            answer: question.answerCount,
+          },
+          tags: [],
+          date: question.gmtCreate,
+        }),
         ),
         tap(console.log),
       );

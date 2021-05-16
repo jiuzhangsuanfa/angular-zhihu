@@ -5,18 +5,20 @@
 
   <div class="question">
     <ng-container *ngIf="question; else questionLoadingTemplate">
-      <div class="tags">
-        <span class="tag" *ngFor="let tag of question.tags">我是问题详情页面</span>
-      </div>
       <p>我是问题详情页面</p>
-      <h2 class="title">{{ question.user.id }}</h2>
-      <article class="content">{{question.content}}</article>
+      <h2 class="id">问题的id：{{id }}</h2>
+      <p class="title">问题的标题：{{question.title}}</p>
+      <p class="content" [innerHTML]="question.content"></p>
       <div class="count">
-        <!-- <span>{{ question.count.visit | readify }}浏览</span>
+        <!-- <span>{{ question.count.visit | readify }}浏览</span>-->
         <span>{{ question.count.answer | readify }}回答</span>
-        <span>{{ question.count.like | readify }}喜欢</span> -->
+        <!-- <span>{{ question.count.like | readify }}喜欢</span> -->
       </div>
     </ng-container>
+    <!-- <div class="tags">
+      <span class="tag" *ngFor="let tag of question.tags">我是问题详情页面</span>
+    </div> -->
+
     <ng-template #questionLoadingTemplate>
       <app-loading [style.height]="'25vh'">正在加载问题详情...</app-loading>
     </ng-template>
