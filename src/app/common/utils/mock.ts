@@ -13,7 +13,7 @@ export const mockVote: (request: HttpRequest<any>) => any = request => {
   const answerID = request.params.get('answer');
   const questionID = request.params.get('question');
   const action = request.params.get('action') as AnswerStatus;
-  // return answerID ? mockAnswer(+answerID) : mockQuestion(+(questionID || 0));
+  return answerID ? mockAnswer(+answerID) : mockQuestion(+(questionID || 0));
 };
 
 const questionStatusList = [
@@ -72,6 +72,6 @@ export const mockUser: (id?: UserID) => User = id => ({
 export const mockSearch: () => SearchResult = () => ({
   id: Random.increment(),
   keyword: '',
-  // question: mockQuestion(),
-  //answer: mockAnswer(),
+  question: mockQuestion(),
+  answer: mockAnswer(),
 });

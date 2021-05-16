@@ -43,7 +43,7 @@ export class AnswerPublishComponent implements OnInit {
     }
     this.status.publishing = LoadingType.loading;
     this.api.publishAnswer({
-      questionId: this.id,
+      question: this.id,
       content: this.content.trim(),
     }).pipe(
       catchError(async error => {
