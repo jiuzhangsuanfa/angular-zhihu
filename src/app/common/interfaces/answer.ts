@@ -10,7 +10,7 @@ export enum AnswerStatus {
 export interface Answer {
 
   id: any;
-  question: number;
+  questionId: number;
   covers?: string[];
   user: User;
   content: string;
@@ -21,7 +21,6 @@ export interface Answer {
   };
   date: Date;
   status: AnswerStatus;
-
 }
 
 export type AnswerID = Answer['id'];
