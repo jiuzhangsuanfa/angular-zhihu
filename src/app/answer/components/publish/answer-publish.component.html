@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="actions">
-    <button mat-button [routerLink]="[ '/question', id ]">
+    <button mat-button [routerLink]="['/question',id]" routerLinkActive="active">
       <i class="icon ri-close-line"></i>
       <span class="text">关闭</span>
     </button>
@@ -25,11 +25,8 @@
       </ng-container>
     </button>
   </div>
-
   <h2 class="title">{{ title }}</h2>
-
   <hr class="split">
-
   <app-editor [(value)]="content" placeholder="在这里写上你的回答"></app-editor>
 
 </div>

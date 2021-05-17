@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError } from 'rxjs/operators';
-import { LoadingType, QuestionID, ResourceType } from 'src/app/common/interfaces';
+import { catchError, tap } from 'rxjs/operators';
+import { LoadingType, QuestionID, ResourceType, UserID } from 'src/app/common/interfaces';
 import { sleep } from 'src/app/common/utils';
 import { QuestionApiService } from 'src/app/question/services/api/question-api.service';
 import { AnswerApiService } from '../../services/api/answer-api.service';
+import { HOST as host } from 'src/app/common/constants';
+import { join } from 'src/app/common/utils';
 
 @Component({
   selector: 'app-answer-publish',
@@ -21,7 +23,7 @@ export class AnswerPublishComponent implements OnInit {
   content = '';
   title = '正在加载问题标题...';
   id: QuestionID;
-
+  useId: UserID;
   constructor(
     private api: AnswerApiService,
     private questionApi: QuestionApiService,
@@ -38,28 +40,32 @@ export class AnswerPublishComponent implements OnInit {
   }
 
   publish() {
-    if (this.status.publishing !== LoadingType.init) {
-      return;
+    if (this.useId !== '') {
+      if (this.status.publishing !== LoadingType.init) {
+        return;
+      }
+      this.status.publishing = LoadingType.loading;
+      this.api.publishAnswer({
+        question: this.id,
+        content: this.content.trim(),
+      }).pipe(
+        catchError(async error => {
+          this.bar.open('回答添加失败，请稍后重试', '', { duration: 3000 });
+          this.status.publishing = LoadingType.failed;
+          await sleep(3000);
+          this.status.publishing = LoadingType.init;
+          throw error;
+        }),
+      ).subscribe(async ({ id }) => {
+        // const params = { questionId, next };
+        //const url = join({ segments: [ResourceType.answers], params });
+        this.status.publishing = LoadingType.succeed;
+        this.bar.open('回答添加成功，正在跳转...', '', { duration: 1500 });
+        await sleep(1500);
+        this.bar.dismiss();
+        this.router.navigate(['/question']);
+      });
     }
-    this.status.publishing = LoadingType.loading;
-    this.api.publishAnswer({
-      question: this.id,
-      content: this.content.trim(),
-    }).pipe(
-      catchError(async error => {
-        this.bar.open('回答添加失败，请稍后重试', '', { duration: 3000 });
-        this.status.publishing = LoadingType.failed;
-        await sleep(3000);
-        this.status.publishing = LoadingType.init;
-        throw error;
-      }),
-    ).subscribe(async ({ id }) => {
-      this.status.publishing = LoadingType.succeed;
-      this.bar.open('回答添加成功，正在跳转...', '', { duration: 1500 });
-      await sleep(1500);
-      this.bar.dismiss();
-      this.router.navigate([ResourceType.answer, id]);
-    });
   }
 
 }
