@@ -31,7 +31,7 @@ export class AnswerDetailComponent implements OnInit {
     this.api.getAnswer(this.id)
       .pipe(
         tap(async answer => this.answer = { ...answer, content: await transform(answer.content) }),
-        mergeMap(answer => this.questionApi.getQuestion(answer.question)),
+        mergeMap(answer => this.questionApi.getQuestion(answer.questionId)),
       )
       .subscribe(question => {
         this.question = question;

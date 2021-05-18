@@ -10,6 +10,7 @@ export enum AnswerStatus {
 export interface Answer {
 
   id: any;
+  questionId?: any;
   question: number;
   covers?: string[];
   user: User;

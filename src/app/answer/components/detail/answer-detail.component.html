@@ -6,9 +6,9 @@
     <div class="question">
       <h2 class="title" [routerLink]="[ '/question', question.id ]">{{ question.title }}</h2>
       <div class="count">
-        <span>{{ question.count.visit | readify }}浏览</span>
+        <!-- <span>{{ question.count.visit | readify }}浏览</span> -->
         <span>{{ question.count.answer | readify }}回答</span>
-        <span>{{ question.count.like | readify }}喜欢</span>
+        <!-- <span>{{ question.count.like | readify }}喜欢</span> -->
       </div>
     </div>
   </ng-container>
@@ -21,15 +21,17 @@
     <div class="answer">
 
       <div class="user">
-        <img src="{{ answer.user.head }}" alt="头像" class="head">
+        <!-- <img src="{{ answer.user.head }}" alt="头像" class="head">
         <div class="text">
           <span class="name">{{ answer.user.name }}</span>
           <span class="motto">{{ answer.user.motto }}</span>
-        </div>
+        </div> -->
+        <h3>回复用户ID:{{answer.user.id}}</h3>
       </div>
-      <p class="approve">{{ answer.count.approve | readify }}人赞同了该回答</p>
-      <article class="content" [innerHTML]="answer.content"></article>
       <p class="date">编辑于 {{ answer.date | date:'YYYY-MM-dd' }}</p>
+      <article class="content" [innerHTML]="answer.content"></article>
+      <p class="approve">{{ answer.count.approve | readify }}人赞同了该回答</p>
+
 
     </div>
 
