@@ -28,8 +28,10 @@ export class AnswerApiService {
           user: {
             id: answer.userId,
           },
+          question: answer.questionId,
           count: {
-            answer: answer.answerCount,
+            approve: answer.count.approve,
+            oppose: answer.count.oppose,
           },
           tags: [],
           date: answer.gmtCreate,
@@ -50,7 +52,10 @@ export class AnswerApiService {
   cancelApproveAnswer(id: AnswerID): Observable<Answer> {
     const params = { action: 'approve', answer: id };
     const url = join({ host, segments: [ResourceType.votes], params });
-    return this.http.delete<Answer>(url);
+    return this.http.delete<Answer>(url)
+      .pipe(
+        tap(console.log),
+      );
   }
 
   opposeAnswer(id: AnswerID): Observable<Answer> {

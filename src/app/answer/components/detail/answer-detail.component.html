@@ -1,4 +1,4 @@
-<app-toolbar class="toolbar" type="action" [back]="back" [disabled]="!question"></app-toolbar>
+<app-toolbar class="toolbar" type="action" [back]="back"></app-toolbar>
 
 <div class="container">
 
@@ -6,7 +6,7 @@
     <div class="question">
       <h2 class="title" [routerLink]="[ '/question', question.id ]">{{ question.title }}</h2>
       <div class="count">
-        <!-- <span>{{ question.count.visit | readify }}浏览</span> -->
+        <!-- <span>{{ question.count.visit | readify }}浏览</span>  -->
         <span>{{ question.count.answer | readify }}回答</span>
         <!-- <span>{{ question.count.like | readify }}喜欢</span> -->
       </div>
