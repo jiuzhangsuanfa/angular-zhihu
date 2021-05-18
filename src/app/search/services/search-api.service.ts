@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs/operators';
 import { HOST as host } from 'src/app/common/constants';
 import { ResourceType } from 'src/app/common/interfaces';
 import { join } from 'src/app/common/utils';
@@ -17,7 +18,10 @@ export class SearchApiService {
 
   search(keyword: string) {
     const url = join({ host, segments: [ResourceType.search], params: { keyword } });
-    return this.http.get<SearchResult[]>(url);
+    return this.http.get<SearchResult[]>(url)
+      .pipe(
+        tap(console.log),
+      );
   }
 
 }
