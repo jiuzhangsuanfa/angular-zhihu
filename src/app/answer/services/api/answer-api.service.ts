@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { HOST as host } from 'src/app/common/constants';
-import { Answer, AnswerID, QuestionID, ResourceType, Question } from 'src/app/common/interfaces';
+import { Answer, AnswerID, QuestionID, ResourceType, Question, UserID, User } from 'src/app/common/interfaces';
 import { join } from 'src/app/common/utils';
 
 @Injectable({
@@ -41,16 +41,16 @@ export class AnswerApiService {
       );
   }
   approveAnswer(id: AnswerID): Observable<Answer> {
-    const params = { action: 'approve', answer: id };
-    const url = join({ host, segments: [ResourceType.votes], params });
-    return this.http.put<Answer>(url, {})
+    const params = { answerId: id, userId: 'tom', type: 1 };
+    const url = join({ host, segments: [ResourceType.votes, ''], params });
+    return this.http.post<Answer>(url, {})
       .pipe(
         tap(console.log),
       );
   }
 
-  cancelApproveAnswer(id: AnswerID): Observable<Answer> {
-    const params = { action: 'approve', answer: id };
+  cancelApproveAnswer(id: AnswerID, userid: UserID): Observable<Answer> {
+    const params = { answerId: id, userId: 'tom', type: 1 };
     const url = join({ host, segments: [ResourceType.votes], params });
     return this.http.delete<Answer>(url)
       .pipe(

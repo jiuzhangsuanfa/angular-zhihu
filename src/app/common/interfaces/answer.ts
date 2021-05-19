@@ -1,4 +1,4 @@
-import { User } from './user';
+import { User, UserID } from './user';
 
 // eslint-disable-next-line no-shadow
 export enum AnswerStatus {
@@ -14,6 +14,7 @@ export interface Answer {
   question: number;
   covers?: string[];
   user: User;
+  //userId: UserID;
   content: string;
   count: {
     approve: number;

@@ -37,18 +37,22 @@ export class AnswerDetailComponent implements OnInit {
         this.question = question;
         this.back = `/question/${question.id}`;
       });
+    this.api.approveAnswer(this.id)
+      .subscribe(count => this.answer?.count);
   }
 
   approve() {
     if (this.answer?.status === AnswerStatus.approve) {
-      // this.api.approveAnswer(this.id)
-      //   .subscribe(answer => this.answer = answer);
+      this.api.approveAnswer(this.id)
+        .subscribe(count => this.answer?.count);
       this.answer.status = AnswerStatus.none;
     } else if (this.answer?.status === AnswerStatus.oppose || this.answer?.status === AnswerStatus.none) {
       // this.api.cancelApproveAnswer(this.id)
       //   .subscribe(answer => this.answer = answer);
       this.answer.status = AnswerStatus.approve;
     }
+    const approve = this.answer?.count.approve;
+    console.log(this.answer?.count);
   }
 
   oppose() {
