@@ -37,31 +37,37 @@ export class AnswerDetailComponent implements OnInit {
         this.question = question;
         this.back = `/question/${question.id}`;
       });
-    this.api.approveAnswer(this.id)
-      .subscribe(count => this.answer?.count);
+    // this.api.approveAnswer(this.id)
+    //   .subscribe(count => this.answer?.count);
+    // this.api.cancelApproveAnswer(this.id)
+    //   .subscribe(answer => this.answer = answer);
+    // this.api.opposeAnswer(this.id)
+    //   .subscribe(answer => this.answer = answer);
+    // this.api.cancelOpposeAnswer(this.id)
+    //   .subscribe(answer => this.answer = answer);
   }
 
   approve() {
     if (this.answer?.status === AnswerStatus.approve) {
-      this.api.approveAnswer(this.id)
-        .subscribe(count => this.answer?.count);
+      this.api.cancelApproveAnswer(this.id)
+        .subscribe(answer => this.answer = answer);
       this.answer.status = AnswerStatus.none;
     } else if (this.answer?.status === AnswerStatus.oppose || this.answer?.status === AnswerStatus.none) {
-      // this.api.cancelApproveAnswer(this.id)
+      // this.api.approveAnswer(this.id)
       //   .subscribe(answer => this.answer = answer);
       this.answer.status = AnswerStatus.approve;
     }
-    const approve = this.answer?.count.approve;
-    console.log(this.answer?.count);
+    // console.log(this.id);
   }
 
   oppose() {
     if (this.answer?.status === AnswerStatus.oppose) {
-      // this.api.opposeAnswer(this.id)
-      //   .subscribe(answer => this.answer = answer);
+      this.api.cancelOpposeAnswer(this.id)
+        .subscribe(answer => this.answer = answer);
+
       this.answer.status = AnswerStatus.none;
     } else if (this.answer?.status === AnswerStatus.approve || this.answer?.status === AnswerStatus.none) {
-      // this.api.cancelOpposeAnswer(this.id)
+      // this.api.opposeAnswer(this.id)
       //   .subscribe(answer => this.answer = answer);
       this.answer.status = AnswerStatus.oppose;
     }
