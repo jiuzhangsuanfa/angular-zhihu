@@ -26,12 +26,11 @@
           <span class="name">{{ answer.user.name }}</span>
           <span class="motto">{{ answer.user.motto }}</span>
         </div> -->
-        <h3>回复用户ID:{{answer.user.id}}</h3>
+        <h3>回复用户ID:{{answer.user?.id}}</h3>
       </div>
       <p class="date">编辑于 {{ answer.date | date:'YYYY-MM-dd' }}</p>
       <article class="content" [innerHTML]="answer.content"></article>
       <p class="approve">{{ answer.count.approve | readify }}人赞同了该回答</p>
-
 
     </div>
 

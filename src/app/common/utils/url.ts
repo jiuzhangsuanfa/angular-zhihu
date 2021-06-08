@@ -7,7 +7,7 @@ interface URLInput {
 export const join: (input: URLInput) => string = ({ host, segments, params }) => {
 
   const paths = segments
-    .map(segment => segment.toString())
+    .map(segment => segment + '')
     .map(encodeURIComponent);
 
   const queries: string[] = [];

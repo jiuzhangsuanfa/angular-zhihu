@@ -38,7 +38,7 @@ export class AnswerDetailComponent implements OnInit {
         this.back = `/question/${question.id}`;
       });
     // this.api.approveAnswer(this.id)
-    //   .subscribe(count => this.answer?.count);
+    //   .subscribe(answer => this.answer = answer);
     // this.api.cancelApproveAnswer(this.id)
     //   .subscribe(answer => this.answer = answer);
     // this.api.opposeAnswer(this.id)
@@ -50,25 +50,24 @@ export class AnswerDetailComponent implements OnInit {
   approve() {
     if (this.answer?.status === AnswerStatus.approve) {
       this.api.cancelApproveAnswer(this.id)
-        .subscribe(answer => this.answer = answer);
+        .subscribe(answer => this.questionApi.getQuestion(answer.question));
       this.answer.status = AnswerStatus.none;
     } else if (this.answer?.status === AnswerStatus.oppose || this.answer?.status === AnswerStatus.none) {
-      // this.api.approveAnswer(this.id)
-      //   .subscribe(answer => this.answer = answer);
+      this.api.approveAnswer(this.id)
+        .subscribe(answer => this.questionApi.getQuestion(answer.question));
       this.answer.status = AnswerStatus.approve;
     }
-    // console.log(this.id);
   }
 
   oppose() {
     if (this.answer?.status === AnswerStatus.oppose) {
       this.api.cancelOpposeAnswer(this.id)
-        .subscribe(answer => this.answer = answer);
+        .subscribe(answer => this.questionApi.getQuestion(answer.question));
 
       this.answer.status = AnswerStatus.none;
     } else if (this.answer?.status === AnswerStatus.approve || this.answer?.status === AnswerStatus.none) {
-      // this.api.opposeAnswer(this.id)
-      //   .subscribe(answer => this.answer = answer);
+      this.api.opposeAnswer(this.id)
+        .subscribe(answer => this.questionApi.getQuestion(answer.question));
       this.answer.status = AnswerStatus.oppose;
     }
   }
